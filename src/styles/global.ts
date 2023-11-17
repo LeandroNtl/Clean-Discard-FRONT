@@ -12,6 +12,10 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: none;
 
     }
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
     
 `;
 

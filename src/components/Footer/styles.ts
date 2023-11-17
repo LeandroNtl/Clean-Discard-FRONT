@@ -12,6 +12,10 @@ const FooterContainer = styled.footer`
     align-items: center;
     justify-content: center;
 
+    @media (max-width: 768px) {
+        flex-flow: column wrap;
+    }
+
 `;
 
 const FooterLink = styled(Link)`

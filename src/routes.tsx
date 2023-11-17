@@ -3,6 +3,7 @@ import Page from './pages/Page';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import DiscardPoints from './pages/DiscardPoints';
+import { Login, Register } from './pages/Auth';
 
 
 const BrowserRouter = createBrowserRouter([
@@ -18,6 +19,14 @@ const BrowserRouter = createBrowserRouter([
             {
                 path: '/discard-points',
                 element: <DiscardPoints />
+            },
+            {
+                path: '/auth/login',
+                element: <Login />
+            },
+            {
+                path: '/auth/register',
+                element: <Register />
             },
             {
                 path: '*',

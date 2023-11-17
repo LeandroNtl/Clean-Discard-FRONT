@@ -6,13 +6,16 @@ import Aside from '../../components/Aside';
 import Logo from '../../components/Logo';
 import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
+import Profile from '../../components/Profile';
+import PageTitle from '../../components/PageTitle';
 
 const Page = () => {
 
     return (
         <Layout>
             <Header>
-                <h1>Page</h1>
+                <PageTitle />
+                <Profile />
             </Header>
             <Main>
                 <Outlet />

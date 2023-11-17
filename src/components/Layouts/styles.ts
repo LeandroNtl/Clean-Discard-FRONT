@@ -13,17 +13,7 @@ const LayoutContainer = styled.div`
     grid-template-areas: 
         "aside header"
         "aside main";
-
-    @media(max-width: 768px) {
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 8fr 1fr;
-
-        grid-template-areas: 
-            "header"
-            "main"
-            "aside";
-    }
-
+        
 `;
 
 export default LayoutContainer;

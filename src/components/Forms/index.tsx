@@ -1,1 +1,38 @@
-import {  } from './styles';
+import { FormTitle, StyledForm, FormField, FormLabel, FormInput, FormButton } from './styles';
+
+// devem ser passadas por props: O titulo do formulario, a função onSubmit, e os dados dos campos
+
+interface FormProps {
+    $title?: string;
+    // $onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+    $fields: {
+        $label: string;
+        $type: string;
+        $id: string;
+        $name: string;
+        $value?: string;
+        $placeholder?: string;
+        $required: boolean;
+        $autocomplete?: string;
+    }[];
+    $area?: string;
+}
+
+const Form = ({ $title, $fields, $area }: FormProps) => {
+
+    return (
+        <StyledForm $area={$area}>
+            <FormTitle>{$title}</FormTitle>
+            {$fields.map((field, index) => (
+                <FormField key={index}>
+                    <FormLabel htmlFor={field.$id}>{field.$label}</FormLabel>
+                    <FormInput type={field.$type} id={field.$id} name={field.$name} value={field.$value} placeholder={field.$placeholder} required={field.$required} autoComplete={field.$autocomplete} />
+                </FormField>
+            ))}
+            <FormButton type="submit">Enviar</FormButton>
+        </StyledForm>
+    );
+
+};
+
+export default Form;

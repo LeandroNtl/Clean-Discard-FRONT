@@ -3,8 +3,9 @@ import Page from './pages/Page';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import DiscardPoints from './pages/DiscardPoints';
-import { Login, Register } from './pages/Auth';
-
+import Auth from './pages/Auth';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 const BrowserRouter = createBrowserRouter([
 
@@ -21,6 +22,16 @@ const BrowserRouter = createBrowserRouter([
                 element: <DiscardPoints />
             },
             {
+                path: '*',
+                element: <NotFound />
+            }
+        ]
+    },
+    {
+        path: '/auth/',
+        element: <Auth />,
+        children: [
+            {
                 path: '/auth/login',
                 element: <Login />
             },
@@ -34,7 +45,6 @@ const BrowserRouter = createBrowserRouter([
             }
         ]
     }
-
 ]);
 
 export default BrowserRouter;

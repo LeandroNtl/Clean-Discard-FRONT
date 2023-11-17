@@ -14,6 +14,8 @@ interface ContainerProps {
     $overflowY?: string;
     $scrollbar?: string;
     $bg?: string;
+    $shadow?: string;
+    $area?: string;
 
 }
 

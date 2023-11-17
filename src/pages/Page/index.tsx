@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import Layout from '../../components/Layouts';
+import { Layout } from '../../components/Layouts';
 import Header from '../../components/Header';
 import Main from '../../components/Main';
 import Aside from '../../components/Aside';

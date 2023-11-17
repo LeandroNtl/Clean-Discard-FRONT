@@ -3,8 +3,10 @@ import ContainerProps from './interface';
 
 const StyledContainer = styled.div<ContainerProps>`
 
+    grid-area: ${props => props.$area || 'none'};
+
     width: ${props => props.$width || '50%'};
-    height: ${props => props.$height || '100%'};
+    height: ${props => props.$height || 'auto'};
 
     gap: ${props => props.$gap || '0'};
     padding: ${props => props.$padding || '0'};
@@ -21,6 +23,7 @@ const StyledContainer = styled.div<ContainerProps>`
     overflow-y: ${props => props.$overflowY || 'none'};
 
     background-color: ${props => props.$bg || 'transparent'};
+    box-shadow: ${props => props.$shadow || 'none'};
 
     &::-webkit-scrollbar {
         display: ${props => props.$scrollbar || 'none'};

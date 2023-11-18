@@ -23,6 +23,7 @@ const StyledContainer = styled.div<ContainerProps>`
     overflow-y: ${props => props.$overflowY || 'none'};
 
     background-color: ${props => props.$bg || 'transparent'};
+    color: ${props => props.$color || '#000000'};
     box-shadow: ${props => props.$shadow || 'none'};
 
     &::-webkit-scrollbar {

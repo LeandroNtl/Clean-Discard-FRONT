@@ -1,20 +1,12 @@
 import { styled } from 'styled-components';
 
-interface FormProps {
-
-    $area?: string;
-
-};
-
 const FormTitle = styled.h1`    
 
     margin-bottom: 20px;
 
 `;
 
-const StyledForm = styled.form<FormProps>`
-
-    grid-area: ${props => props.$area};
+const StyledForm = styled.form`
 
     width: 100%;
     
@@ -71,3 +63,4 @@ const FormButton = styled.button`
 `;
 
 export { FormTitle, StyledForm, FormField, FormLabel, FormInput, FormButton };
+

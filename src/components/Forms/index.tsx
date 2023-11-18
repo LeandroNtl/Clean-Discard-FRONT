@@ -1,7 +1,5 @@
 import { FormTitle, StyledForm, FormField, FormLabel, FormInput, FormButton } from './styles';
 
-// devem ser passadas por props: O titulo do formulario, a função onSubmit, e os dados dos campos
-
 interface FormProps {
     $title?: string;
     // $onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
@@ -15,13 +13,13 @@ interface FormProps {
         $required: boolean;
         $autocomplete?: string;
     }[];
-    $area?: string;
+
 }
 
-const Form = ({ $title, $fields, $area }: FormProps) => {
+const Form = ({ $title, $fields }: FormProps) => {
 
     return (
-        <StyledForm $area={$area}>
+        <StyledForm>
             <FormTitle>{$title}</FormTitle>
             {$fields.map((field, index) => (
                 <FormField key={index}>

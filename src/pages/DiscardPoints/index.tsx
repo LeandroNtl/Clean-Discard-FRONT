@@ -9,5 +9,4 @@ const DiscardPoints = () => {
 
 };
 
-
 export default DiscardPoints;

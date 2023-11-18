@@ -42,7 +42,7 @@ const LogoLink = styled(Link)`
     color: #ffffff;
 
     &:hover {
-        color: #008000;
+        color: #64F564;
     }
 
 `;

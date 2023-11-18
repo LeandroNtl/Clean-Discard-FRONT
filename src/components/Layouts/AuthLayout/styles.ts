@@ -8,13 +8,14 @@ const LayoutContainer = styled.div`
     display: grid;
 
     grid-template-columns: 4fr 8fr;
-    grid-template-rows: 9fr 1fr;
+    grid-template-rows: 0.5fr 5.5fr 1fr;
 
-    grid-template-areas: 
+    grid-template-areas:
+        "header header" 
         "side form"
         "footer footer";
     
-    background-color: #000000;
+    background-color: #f5f5f5;
 `;
 
 export default LayoutContainer;

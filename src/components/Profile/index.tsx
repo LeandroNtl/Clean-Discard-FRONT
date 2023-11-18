@@ -2,7 +2,7 @@ import { ProfileContainer, ProfileBox, ProfileDropdown, ProfileDropdownItem, Pro
 import { useState } from 'react';
 //import { useAuth } from '../../hooks/useAuth';
 // importar icones de user e logout do @mui/icons-material
-import { AccountCircle, Logout } from '@mui/icons-material';
+import { AccountCircle, Login } from '@mui/icons-material';
 
 const links = [
     {
@@ -18,9 +18,9 @@ const links = [
         path: '/settings'
     },
     {
-        name: 'Logout',
-        path: '/logout',
-        icon: <Logout />
+        name: 'login',
+        path: '/auth/login',
+        icon: <Login />
     }
 
 ];

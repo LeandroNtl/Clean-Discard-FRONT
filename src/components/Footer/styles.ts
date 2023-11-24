@@ -22,8 +22,6 @@ const FooterContainer = styled.footer`
 
 const FooterLink = styled(Link)`
 
-    width: 50%;
-
     display: flex;
     align-items: center;
     justify-content: flex-start;

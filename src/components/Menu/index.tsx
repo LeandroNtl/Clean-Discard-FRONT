@@ -10,6 +10,11 @@ const Menu = () => {
             icon: <Home />
         },
         {
+            name: 'Discard Points',
+            url: '/discard-points',
+            icon: <Map />
+        },
+        {
             name: 'About',
             url: '/about',
             icon: <Info />
@@ -18,12 +23,8 @@ const Menu = () => {
             name: 'Contact',
             url: '/contact',
             icon: <Phone />
-        },
-        {
-            name: 'Discard Points',
-            url: '/discard-points',
-            icon: <Map />
         }
+        
     ];
 
     return (

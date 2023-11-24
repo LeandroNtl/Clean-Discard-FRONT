@@ -1,7 +1,20 @@
+import Chat from '../../components/Chat';
 import Container from '../../components/Container';
-
+import { useState, useEffect } from 'react';
+import api from '../../services/api';
 
 const Home = () => {
+
+    const [role, setRole] = useState([]);
+
+    const getRole = async () => {
+        const response = await api.get("/roles/");
+        setRole(response.data);
+    }
+
+    useEffect(() => {
+        getRole();
+    }, []);
 
     return (
 
@@ -15,7 +28,13 @@ const Home = () => {
                 </Container>
                 <Container $height="100%" $gap="0.5rem">
                     <Container $height="100%" $border="2px solid #008000" $radius="0.5rem" $direction="column" $gap="0.5rem" $padding="0.5rem">
-                        <h2>Chat</h2>
+                        {role.map((role: any, index: number) => {
+                            return (
+                                <Container $height="100%" $border="2px solid #008000" $radius="0.5rem" $gap="0.5rem" key={index}>
+                                    <h2>{role.name}</h2>
+                                </Container>
+                            );
+                        })}
                     </Container>
                     <Container $height="100%" $border="2px solid #008000" $radius="0.5rem" $direction="column" $gap="0.5rem" $padding="0.5rem">
                         <h2>Novo Local</h2>
@@ -30,6 +49,7 @@ const Home = () => {
                     <h2>Lista de Locais</h2>
                 </Container>
             </Container>
+            <Chat />
         </Container>
        
     );

@@ -2,7 +2,8 @@ import { FormTitle, StyledForm, FormField, FormLabel, FormInput, FormButton } fr
 
 interface FormProps {
     $title?: string;
-    // $onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+    $onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+    $onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     $fields: {
         $label: string;
         $type: string;
@@ -16,10 +17,10 @@ interface FormProps {
 
 }
 
-const Form = ({ $title, $fields }: FormProps) => {
+const Form = ({ $title, $fields, $onSubmit }: FormProps) => {
 
     return (
-        <StyledForm>
+        <StyledForm onSubmit={$onSubmit}>
             <FormTitle>{$title}</FormTitle>
             {$fields.map((field, index) => (
                 <FormField key={index}>

@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import ContainerProps from './interface';
+import ContainerProps from './types';
 
 const StyledContainer = styled.div<ContainerProps>`
 
@@ -28,6 +28,14 @@ const StyledContainer = styled.div<ContainerProps>`
 
     &::-webkit-scrollbar {
         display: ${props => props.$scrollbar || 'none'};
+    }
+
+    @media (max-width: 768px) {
+
+        width: ${props => props.$resposive?.$width || '100%'};
+        height: ${props => props.$resposive?.$height || 'auto'};
+        flex-direction: ${props => props.$resposive?.$direction || 'column'};
+
     }
     
 `;

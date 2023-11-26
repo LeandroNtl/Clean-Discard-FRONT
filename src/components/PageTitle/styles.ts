@@ -11,6 +11,12 @@ const PageTitleContainer = styled.div`
 
     padding: 0px 20px;
 
+    @media (max-width: 768px) {
+            
+        display: none;
+
+    }
+
 `;
 
 const PageTitleText = styled.h1`

@@ -15,7 +15,9 @@ const FooterContainer = styled.footer`
     background-color: #000000;
 
     @media (max-width: 768px) {
-        flex-flow: column wrap;
+
+        flex-direction: row;
+    
     }
 
 `;
@@ -34,14 +36,31 @@ const FooterLink = styled(Link)`
         color: #64F564;
     }
 
+    @media (max-width: 768px) {
+
+        justify-content: center;
+
+    }
+
 `;
 
 const FooterText = styled.p`
+
+    width: 100%;
+
+    text-align: center;
 
     font-size: 0.8rem;
     margin-left: 10px;
 
     color: #ffffff;
+
+    @media (max-width: 768px) {
+
+        margin-left: 0;
+        padding: 1rem;
+
+    }
 
 `;
 

@@ -13,6 +13,21 @@ const LayoutContainer = styled.div`
     grid-template-areas: 
         "aside header"
         "aside main";
+
+    @media (max-width: 768px) {
+
+        height: 100vh;
+
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 8fr 1fr;
+
+        grid-template-areas: 
+            "header"
+            "main"
+            "aside";
+
+        background-color: red;
+    }
         
 `;
 

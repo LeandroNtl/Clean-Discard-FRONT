@@ -3,18 +3,14 @@ import { Link } from 'react-router-dom';
 
 const MenuContainer = styled.div`
 
-    grid-area: menu;
-
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    display: none;
 
     @media (max-width: 768px) {
             
-        display: none;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
 
     }
 
@@ -37,12 +33,25 @@ const MenuLinks = styled(Link)`
         color: #64F564;
     }
 
+    @media (max-width: 768px) {
+
+        justify-content: center;
+        margin-top: 0;
+
+    }
+
 `;
 
 const MenuText = styled.p`
     
     font-size: 1rem;
     font-weight: 500;
+
+    @media (max-width: 768px) {
+            
+        display: none;
+
+    }
 
 `;
 

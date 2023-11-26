@@ -8,12 +8,15 @@ import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
 import Profile from '../../components/Profile';
 import PageTitle from '../../components/PageTitle';
+import HeaderMenu from '../../components/HeaderMenu';
+
 
 const Page = () => {
 
     return (
         <Layout>
             <Header>
+                <HeaderMenu />
                 <PageTitle />
                 <Profile />
             </Header>

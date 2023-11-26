@@ -1,4 +1,5 @@
 import { BubbleChat } from 'flowise-embed-react'
+import icon from '../../assets/icons/bot-icon.jpg'
 
 const Chat = () => {
     return (
@@ -25,7 +26,7 @@ const Chat = () => {
                         backgroundColor: "#f7f8ff",
                         textColor: "#303235",
                         showAvatar: true,
-                        avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/parroticon.png",
+                        avatarSrc: icon,
                     },
                     userMessage: {
                         backgroundColor: "#008000",

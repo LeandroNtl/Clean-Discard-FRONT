@@ -18,6 +18,15 @@ const AsideContainer = styled.aside`
     background-color: #000000;
     color: #ffffff;
 
+    @media (max-width: 768px) {
+
+        grid-template-columns: 1fr;
+        grid-template-rows: 2fr 1fr;
+        grid-template-areas: 
+            "logo"
+            "footer";
+    }
+
 `;
 
 export default AsideContainer;

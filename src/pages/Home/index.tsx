@@ -1,54 +1,38 @@
 import Chat from '../../components/Chat';
 import Container from '../../components/Container';
-import { useState, useEffect } from 'react';
-import api from '../../services/api';
+// import { useState, useEffect } from 'react';
+// import api from '../../services/api';
+import CarouselComponent from '../../components/Carousel';
 
 const Home = () => {
-
-    const [role, setRole] = useState([]);
-
-    const getRole = async () => {
-        const response = await api.get("/roles/");
-        setRole(response.data);
-    }
-
-    useEffect(() => {
-        getRole();
-    }, []);
 
     return (
 
         <Container $width="100%" $height="100%" $padding="0.3rem" $gap="0.5rem" $direction="column" $align="center" $justify="center">
-            <Container $width="88rem" $height="10rem" $border="2px solid #008000" $radius="0.5rem" $gap="0.5rem" $padding="0.5rem" $overflowX="auto" $justify="flex-start">
-
+            <Container $width="100%" $height="20rem" $border="2px solid #008000" $radius="0.5rem" $gap="0.5rem" $padding="0.5rem" $overflowX="auto" $justify="flex-start">
+                <CarouselComponent />
             </Container>
             <Container $width="100%" $height="30rem" $gap="0.5rem">
                 <Container $height="100%" $border="2px solid #008000" $radius="0.5rem" $direction="column" $gap="0.5rem" $padding="0.5rem">
                     Mapa
                 </Container>
-                <Container $height="100%" $gap="0.5rem">
+                <Container $height="100%" $gap="0.5rem" $resposive={{ $width: "100%" }}>
                     <Container $height="100%" $border="2px solid #008000" $radius="0.5rem" $direction="column" $gap="0.5rem" $padding="0.5rem">
-                        {role.map((role: any, index: number) => {
-                            return (
-                                <Container $height="100%" $border="2px solid #008000" $radius="0.5rem" $gap="0.5rem" key={index}>
-                                    <h2>{role.name}</h2>
-                                </Container>
-                            );
-                        })}
+                        <h2>Lista de Locais</h2>    
                     </Container>
                     <Container $height="100%" $border="2px solid #008000" $radius="0.5rem" $direction="column" $gap="0.5rem" $padding="0.5rem">
                         <h2>Novo Local</h2>
                     </Container>
                 </Container>
             </Container>
-            <Container $width="100%" $height="20rem" $gap="0.5rem">
+            {/* <Container $width="100%" $height="20rem" $gap="0.5rem">
                 <Container $height="100%" $border="2px solid #008000" $radius="0.5rem" $gap="0.5rem">
                     <h2>Lista de Locais</h2>
                 </Container>
                 <Container $height="100%" $border="2px solid #008000" $radius="0.5rem" $gap="0.5rem">
                     <h2>Lista de Locais</h2>
                 </Container>
-            </Container>
+            </Container> */}
             <Chat />
         </Container>
        

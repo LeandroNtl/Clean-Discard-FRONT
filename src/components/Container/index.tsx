@@ -1,5 +1,5 @@
 import StyledContainer from './styles';
-import ContainerProps from "./interface";
+import ContainerProps from "./types";
 
 interface ContainerChildren {
     children: React.ReactNode;

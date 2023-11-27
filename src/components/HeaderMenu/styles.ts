@@ -6,7 +6,12 @@ const MenuContainer = styled.div`
     display: none;
 
     @media (max-width: 768px) {
-            
+        
+        width: 100%;
+        height: 100%;
+    
+        margin-right: 4rem;
+
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -36,7 +41,10 @@ const MenuLinks = styled(Link)`
     @media (max-width: 768px) {
 
         justify-content: center;
+        align-items: center;
         margin-top: 0;
+        padding-left: 0;
+        
 
     }
 

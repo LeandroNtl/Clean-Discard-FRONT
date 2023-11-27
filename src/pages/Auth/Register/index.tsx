@@ -1,4 +1,4 @@
-import Form from "../../components/Forms";
+import Form from "../../../components/Forms";
 
 const Register = () => {
 

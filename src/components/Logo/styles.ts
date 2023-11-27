@@ -10,7 +10,7 @@ const LogoContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-
+   
 `;
 
 const LogoImage = styled.img`
@@ -19,6 +19,10 @@ const LogoImage = styled.img`
     height: 30px;
 
     filter: brightness(0) invert(1);
+
+    @media (max-width: 768px) {
+       display: none;
+    }
 
 `;
 

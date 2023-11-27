@@ -1,52 +1,102 @@
-import { useEffect, useState } from "react";
+import { createContext, useCallback, useState, useContext, useEffect } from "react";
 import api from "../services/api";
 
-interface User {
-  id: string;
+// retorno da api
+// return { "token": create_access_token(identity=user, fresh=True), "user": user }
+
+interface SignInCredentials {
   username: string;
-  email: string;
+  password: string;
 }
 
-const useAuth = () => {
+interface AuthContextData {
+    user: object;
+    signIn(credentials: SignInCredentials): Promise<void>;
+    signOut(): void;
+    loading: boolean;
+}   
 
-    const [user, setUser] = useState<User | null>(null);
-    
+interface AuthState {
+    token: string;
+    user: object;
+}
+
+interface User {
+    id: string;
+    username: string;
+    email: string;
+}
+
+interface Response {
+    token: string;
+    user: User;
+}
+
+interface AuthProviderProps {
+    children: React.ReactNode;
+}
+
+const AuthContext = createContext<AuthContextData>({} as AuthContextData);
+
+const AuthProvider = ({ children }: AuthProviderProps) => {
+    const [data, setData] = useState<AuthState>({} as AuthState);
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
-        const storagedUser = localStorage.getItem("@Auth:user");
-        const storagedToken = localStorage.getItem("@Auth:token");
-    
-        if (storagedUser && storagedToken) {
-        api.defaults.headers["Authorization"] = `Bearer ${storagedToken}`;
-        setUser(JSON.parse(storagedUser));
+        async function loadStorageData() {
+            const token = localStorage.getItem('@Auth:token');
+            const user = localStorage.getItem('@Auth:user');
+
+            if (token && user) {
+                setData({ token, user: JSON.parse(user) });
+            }
+
+            setLoading(false);
         }
+
+        loadStorageData();
     }, []);
-    
-    const signIn = async (username: string, password: string) => {
 
-        console.log("Entrou no signIn")
-
-        const response = await api.post("/users/login", {
+    const signIn = useCallback(async ({ username, password }: SignInCredentials) => {
+        const response = await api.post<Response>('/users/login', {
             username,
-            password,
+            password
         });
 
-        console.log(response)
-    
-        setUser(response.data.user);
-    
-        api.defaults.headers["Authorization"] = `Bearer ${response.data.token}`;
-    
-        localStorage.setItem("@Auth:user", JSON.stringify(response.data.user));
-        localStorage.setItem("@Auth:token", response.data.token);
+        const { token, user } = response.data;
 
-    };
-    
-    const signOut = () => {
-        localStorage.clear();
-        setUser(null);
-    };
-    
-    return { signed: !!user, user, signIn, signOut };
-    };
+        localStorage.setItem('@Auth:token', token);
+        localStorage.setItem('@Auth:user', JSON.stringify(user));
 
-export { useAuth };
+        setData({ token, user });
+    }, []);
+
+    const signOut = useCallback(() => {
+        localStorage.removeItem('@Auth:token');
+        localStorage.removeItem('@Auth:user');
+
+        setData({} as AuthState);
+    }, []);
+
+    return (
+        <AuthContext.Provider value={{ user: data.user, signIn, signOut, loading }}>
+            {children}
+        </AuthContext.Provider>
+    )
+};
+
+const useAuth = () => {
+    const context = useContext(AuthContext);
+
+    if (!context) {
+        throw new Error('useAuth must be used within an AuthProvider');
+    }
+
+    return context;
+};
+
+export { AuthProvider, useAuth, AuthContext };
+
+// para usar o useAuth, basta importar o hook e chamar a função
+
+// para usar o AuthProvider, basta importar o componente e colocar ele por volta dos componentes que precisam de autenticação

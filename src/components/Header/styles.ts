@@ -15,6 +15,12 @@ const HeaderContainer = styled.header`
     background-color: #ffffff;
     color: #000000;
 
+    @media (max-width: 768px) {
+
+        justify-content: flex-end;
+
+    }
+
 `;
 
 export default HeaderContainer;

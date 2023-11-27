@@ -1,26 +1,22 @@
-import { MenuContainer, MenuLinks, MenuText } from './styles';
+import { MenuContainer, MenuLinks } from './styles';
 import { Home, Info, Phone, Map } from '@mui/icons-material';
 
 const HeaderMenu = () => {
 
     const menuLinks = [
         {
-            name: 'Home',
             url: '/',
             icon: <Home style={{ color: '#008000' }} />
         },
         {
-            name: 'Discard Points',
             url: '/discard-points',
             icon: <Map style={{ color: '#008000' }} />
         },
         {
-            name: 'About',
             url: '/about',
             icon: <Info style={{ color: '#008000' }} />
         },
         {
-            name: 'Contact',
             url: '/contact',
             icon: <Phone style={{ color: '#008000' }} />
         }
@@ -36,9 +32,6 @@ const HeaderMenu = () => {
                         to={item.url}
                     >
                         {item.icon}
-                        <MenuText>
-                            {item.name}
-                        </MenuText>
                     </MenuLinks>
                 );
             })}

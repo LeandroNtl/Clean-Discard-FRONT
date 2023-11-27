@@ -1,11 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
+
 import Page from './pages/Page';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import DiscardPoints from './pages/DiscardPoints';
 import Auth from './pages/Auth';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Login from './pages/Auth/Login';
+import Register from './pages/Auth/Register';
+import Admin from './pages/Admin';
 
 const BrowserRouter = createBrowserRouter([
 
@@ -20,6 +22,10 @@ const BrowserRouter = createBrowserRouter([
             {
                 path: '/discard-points',
                 element: <DiscardPoints />
+            },
+            {
+                path: '/admin',
+                element: <Admin />
             },
             {
                 path: '*',

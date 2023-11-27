@@ -31,7 +31,7 @@ const Auth = () => {
                 <PageTitle />
                 <Profile />
             </Header>
-            <Container $width="100%" $height="100%" $bg="#008000" $area="side" $direction="column" $justify="flex-start">
+            <Container $width="100%" $height="100%" $bg="#008000" $area="side" $direction="column" $justify="flex-start" $padding="0.5rem">
                 <Logo />
                 <Container $width="100%" $height="100%" $bg="#008000" $area="links" $direction="column">
                     {locations.map((item) => {
@@ -48,7 +48,7 @@ const Auth = () => {
                     })}
                 </Container>
             </Container>
-            <Container $width="100%" $height="100%" $bg="#ffffff" $area="form">
+            <Container $width="100%" $height="100%" $bg="#ffffff" $area="form" >
                 <Container $width="60%" $radius="0.5rem" $shadow="0 0.5rem 1rem #008000" $padding="2rem">
                     <Outlet />
                 </Container>

@@ -16,6 +16,18 @@ const LayoutContainer = styled.div`
         "footer footer";
     
     background-color: #f5f5f5;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.5fr 1fr 2fr 1fr;
+
+        grid-template-areas:
+            "header" 
+            "side"
+            "form"
+            "footer";
+    }
+
 `;
 
 export default LayoutContainer;

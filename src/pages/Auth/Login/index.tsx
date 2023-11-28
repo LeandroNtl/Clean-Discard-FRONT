@@ -21,6 +21,61 @@ const Login = () => {
             $placeholder: "Digite sua senha",
             $required: true,
             $autocomplete: "current-password"
+        },
+        {
+            $label: "Tipo de usuário",
+            $type: "select",
+            $id: "userType",
+            $name: "userType",
+            $required: true,
+            $options: [
+                {
+                    value: "admin",
+                    label: "Administrador"
+                },
+                {
+                    value: "user",
+                    label: "Usuário"
+                },
+                {
+                    value: "guest",
+                    label: "Convidado"
+                },
+                {
+                    value: "other",
+                    label: "Outro"
+
+                }
+            ]
+        },
+        {
+            $label: "Nota",
+            $type: "checkbox",
+            $id: "nota",
+            $name: "nota",
+            $required: true,
+            $options: [
+                {
+                    value: "1",
+                    label: "1"
+                },
+                {
+                    value: "2",
+                    label: "2"
+                },
+                {
+                    value: "3",
+                    label: "3"
+                },
+                {
+                    value: "4",
+                    label: "4"
+                },
+                {
+                    value: "5",
+                    label: "5"
+                }
+            ]
         }
     ];
     

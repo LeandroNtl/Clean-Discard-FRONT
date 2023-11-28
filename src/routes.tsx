@@ -7,7 +7,7 @@ import DiscardPoints from './pages/DiscardPoints';
 import Auth from './pages/Auth';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
-import Admin from './pages/Admin';
+import { Wastes, Admin } from './pages/Admin';
 
 const BrowserRouter = createBrowserRouter([
 
@@ -26,6 +26,10 @@ const BrowserRouter = createBrowserRouter([
             {
                 path: '/admin',
                 element: <Admin />
+            },
+            {
+                path: '/admin/wastes',
+                element: <Wastes />
             },
             {
                 path: '*',

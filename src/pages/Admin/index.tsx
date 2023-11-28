@@ -1,72 +1,44 @@
-import { useState, useEffect } from "react";
-import api from "../../services/api";
+import { Link } from "react-router-dom";
 
-interface Waste {
-    name: string;
-    description: string;
-}
+import Container from "../../components/Container";
+import Wastes from "./Wastes";
+
 
 const Admin = () => {
 
-    const [waste, setWaste] = useState<Waste>({
-        name: '',
-        description: ''
-    });
-
-    const [wastes, setWastes] = useState<Waste[]>([]);
-
-    useEffect(() => {
-        api.get('/wastes').then(response => {
-            setWastes(response.data);
-        });
-    }, []);
-    
-    const handleCreateWaste = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-
-        const data = {
-            name: waste.name,
-            description: waste.description
+    const links = [
+        {
+            name: 'Resíduos',
+            path: '/admin/wastes'
+        },
+        {
+            name: 'Locais',
+            path: '/admin/points'
+        },
+        {
+            name: 'Usuários',
+            path: '/admin/users'
+        },
+        {
+            name: 'Avaliações',
+            path: '/admin/evaluations'
         }
 
-        api.post('/wastes', data).then(response => {
-            setWastes([...wastes, response.data]);
-        });
-
-    }
+    ]
 
     return (
-        <div>
-            <h1>Resíduos cadastrados</h1>
-            <ul>
-                {wastes.map(waste => (
-                    <li key={waste.name}>
-                        <span>{waste.name}</span>
-                        <span>{waste.description}</span>
-                    </li>
-                ))}
-            </ul>
-            <h1>Cadastro</h1>
-            <form onSubmit={handleCreateWaste}>
-                <input 
-                    type="text" 
-                    name="name" 
-                    id="name" 
-                    placeholder="Nome do resíduo"
-                    onChange={e => setWaste({...waste, name: e.target.value})}
-                />
-                <input 
-                    type="text" 
-                    name="description" 
-                    id="description" 
-                    placeholder="Descrição do resíduo"
-                    onChange={e => setWaste({...waste, description: e.target.value})}
-                />
-                <button type="submit">Cadastrar</button>
-            </form>
-        </div>
+        <Container $width="100%" $height="100%" $padding="0.3rem" $gap="0.5rem" $direction="column" $align="center" $justify="center">
+            <Container $width="100%" $height="20rem" $border="2px solid #008000" $radius="0.5rem" $gap="0.5rem" $padding="0.5rem" $overflowX="auto" $justify="flex-start">
+                { links.map(link => (
+                    <Link to={link.path}>
+                        <h2>{link.name}</h2>
+                    </Link>
+                )) }
+            </Container>
+        </Container>
     );
-    
+
 };
 
-export default Admin;
+
+export { Wastes, Admin };

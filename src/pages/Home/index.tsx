@@ -1,8 +1,8 @@
 import DemoCarousel from '../../components/Carousel';
 import Chat from '../../components/Chat';
 import Container from '../../components/Container';
-// import { useState, useEffect } from 'react';
-// import api from '../../services/api';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { Link } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ const Home = () => {
     return (
 
         <Container $width="100%" $height="100%" $padding="0.3rem" $gap="0.5rem" $direction="column" $align="center" $justify="center">
+            <ToastContainer />
             <Container $width="100%" $height="20rem" $border="2px solid #008000" $radius="0.5rem" $gap="0.5rem" $padding="0.5rem" $overflowX="auto" $justify="flex-start">
                 <DemoCarousel />
             </Container>

@@ -31,9 +31,9 @@ const Auth = () => {
                 <PageTitle />
                 <Profile />
             </Header>
-            <Container $width="100%" $height="100%" $bg="#008000" $area="side" $direction="column" $justify="flex-start" $padding="0.5rem">
+            <Container $width="100%" $height="100%" $bg="#008000" $area="side" $direction="column" $justify="flex-start" $padding="0.5rem" >    
                 <Logo />
-                <Container $width="100%" $height="100%" $bg="#008000" $area="links" $direction="column">
+                <Container $width="100%" $height="100%" $bg="#008000" $area="links" $direction="column" $justify="flex-start" $padding="0.5rem" $resposive={{ $padding: '0.5rem 0' }}>
                     {locations.map((item) => {
                         if (item.pathname !== location.pathname) {
                             return (
@@ -49,7 +49,7 @@ const Auth = () => {
                 </Container>
             </Container>
             <Container $width="100%" $height="100%" $bg="#ffffff" $area="form" >
-                <Container $width="60%" $radius="0.5rem" $shadow="0 0.5rem 1rem #008000" $padding="2rem">
+                <Container $width="60%" $radius="0.5rem" $shadow="0 0.5rem 1rem #008000" $padding="1rem" $resposive={{ $padding: '1rem', $margin: '1rem', $width: "80%" }} >
                     <Outlet />
                 </Container>
             </Container>

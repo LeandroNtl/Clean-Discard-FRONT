@@ -35,6 +35,13 @@ const StyledContainer = styled.div<ContainerProps>`
         width: ${props => props.$resposive?.$width || '100%'};
         height: ${props => props.$resposive?.$height || 'auto'};
         flex-direction: ${props => props.$resposive?.$direction || 'column'};
+        align-items: ${props => props.$resposive?.$align || 'center'};
+        justify-content: ${props => props.$resposive?.$justify || 'center'};
+        padding: ${props => props.$resposive?.$padding || '0'};
+        gap: ${props => props.$resposive?.$gap || '0'};
+        border-radius: ${props => props.$resposive?.$radius || '0'};
+        border: ${props => props.$resposive?.$border || 'none'};
+        margin: ${props => props.$resposive?.$margin || '0'};
 
     }
     

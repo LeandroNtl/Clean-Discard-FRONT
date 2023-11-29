@@ -35,6 +35,7 @@ interface ContainerProps {
         $color?: string;
         $shadow?: string;
         $area?: string;
+        $margin?: string;
     }
 
 }

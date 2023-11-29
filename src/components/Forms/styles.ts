@@ -1,163 +1,74 @@
 import { styled } from 'styled-components';
 
-const FormTitle = styled.h1`    
-
-    margin-bottom: 20px;
-
-`;
-
-const StyledForm = styled.form`
+const Form = styled.form`
 
     width: 100%;
     
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+
+    padding: 1rem 0;
 
 `;
 
 const FormField = styled.div`
 
-    width: 70%;
-    margin-bottom: 20px;
-
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     justify-content: center;
-
+    align-items: center;
+    
 `;
 
 const FormLabel = styled.label`
 
-    margin-bottom: 5px;
-
+    width: 100%;
+    margin: 0.5rem 0;
+    
 `;
 
 const FormInput = styled.input`
 
     width: 100%;
-    height: 30px;
-    padding: 5px;
+    padding: 1rem 0.5rem;
+    margin: 0.5rem 0;
 
-    border: 1px solid #008000;
+    border: 1px solid #000000;
     border-radius: 0.5rem;
 
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    outline: none;
+
+    &:focus {
+        border: 1px solid #000800;
+    }
+    
 `;
 
 const FormButton = styled.button`
 
-    width: 20%;
-    height: 30px;
-    padding: 5px;
+    width: 50%;
+    padding: 1rem 0.5rem;
+    margin: 0.5rem 0;
 
-    border: none;
+    border: 1px solid #000000;
     border-radius: 0.5rem;
 
-    background-color: #008000;
-    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
 
-    cursor: pointer;
+    outline: none;
 
-`;
-
-const SelectFormField = styled.div`
-    
-    width: 70%;
-    margin-bottom: 20px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-`;
-
-const SelectFormLabel = styled.label`
-
-    margin-bottom: 5px;
-
-`;
-
-const SelectForm = styled.select`
-    
-    width: 100%;
-    height: 30px;
-    padding: 5px;
-
-    border: 1px solid #008000;
-    border-radius: 0.5rem;
-
-`;
-
-const SelectFormOption = styled.option`
-
-    width: 100%;
-    height: 30px;
-    padding: 5px;
-
-`;
-
-const FormFieldSet = styled.fieldset`
-    
-    width: 70%;
-    margin-bottom: 20px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-`;
-
-const Legend = styled.legend` 
-    
-    margin-bottom: 5px;
-
-`;
-
-const CheckboxFormField = styled.div`
-
-    display: flex;
-    align-items: center;
-    margin-bottom: 16px;
-
-    flex-direction: row;
-    justify-content: center;
-
-    padding: 0.5rem;
-
-`;
-
-const CheckboxLabel = styled.label`
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-`;
-
-const CheckboxInput = styled.input`
-
-    margin-right: 10px;
-
-    width: 20px;
-    height: 20px;
-
-    cursor: pointer;
-
-    border: 1px solid #008000;
-
-    border-radius: 0.5rem;
-
-    &:checked {
+    &:hover {
         background-color: #008000;
+        color: #ffffff;
     }
-
+    
 `;
 
-
-export { FormTitle, StyledForm, FormField, FormLabel, FormInput, FormButton, SelectFormField, SelectFormLabel, SelectForm, SelectFormOption, CheckboxFormField, CheckboxLabel, CheckboxInput, FormFieldSet, Legend };
-
+export { Form, FormField, FormLabel, FormInput, FormButton };

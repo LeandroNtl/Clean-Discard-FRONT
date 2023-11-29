@@ -19,7 +19,7 @@ const LayoutContainer = styled.div`
 
     @media (max-width: 768px) {
         grid-template-columns: 1fr;
-        grid-template-rows: 0.5fr 1fr 2fr 1fr;
+        grid-template-rows: 0.5fr 0.5fr 2fr 1fr;
 
         grid-template-areas:
             "header" 

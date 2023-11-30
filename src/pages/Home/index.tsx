@@ -1,4 +1,4 @@
-import DemoCarousel from '../../components/Carousel';
+import TipCarousel from '../../components/Carousel';
 import Chat from '../../components/Chat';
 import Container from '../../components/Container';
 import { ToastContainer } from 'react-toastify';
@@ -49,8 +49,8 @@ const Home = () => {
                     </Container>
                 </Container>
             </Container>
-            <Container $width="100%" $height="20rem" $border="2px solid #008000" $radius="0.5rem" $gap="0.5rem" $padding="0.5rem" $overflowX="auto" $justify="flex-start" >
-                <DemoCarousel />
+            <Container $width="1590px" $height="20rem" $border="2px solid #008000" $radius="0.5rem" $padding="0.5rem">
+                <TipCarousel />
             </Container>
             <Container $width="100%" $height="60px"></Container>
             <Chat />

@@ -4,7 +4,7 @@ import icon from '../../assets/icons/bot-icon.jpg'
 const Chat = () => {
     return (
         <BubbleChat
-            chatflowid="c44f7768-ae8d-4f2b-b65c-4a8d68bc2607"
+            chatflowid="8c50d4f3-e3b0-456d-a44e-fbb295f1217c"
             apiHost="https://leandrontl-chatbot.hf.space"
             theme={{
                 button: {

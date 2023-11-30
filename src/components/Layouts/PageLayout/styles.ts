@@ -28,7 +28,7 @@ const LayoutContainer = styled.div`
 
         background-color: red;
     }
-        
+
 `;
 
 export default LayoutContainer;

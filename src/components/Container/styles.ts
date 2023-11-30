@@ -10,6 +10,7 @@ const StyledContainer = styled.div<ContainerProps>`
 
     gap: ${props => props.$gap || '0'};
     padding: ${props => props.$padding || '0'};
+    margin: ${props => props.$margin || '0'};
 
     display: flex;
     flex-direction: ${props => props.$direction || 'row'};
@@ -41,7 +42,7 @@ const StyledContainer = styled.div<ContainerProps>`
         gap: ${props => props.$resposive?.$gap || '0'};
         border-radius: ${props => props.$resposive?.$radius || '0'};
         border: ${props => props.$resposive?.$border || 'none'};
-        margin: ${props => props.$resposive?.$margin || '0'};
+        margin: ${props => props.$resposive?.$margin || '0'}
 
     }
     

@@ -17,6 +17,8 @@ interface ContainerProps {
     $color?: string;
     $shadow?: string;
     $area?: string;
+    $textAlign?: string;
+    $margin?: string;
 
     $resposive?: {
         $width?: string;
@@ -36,6 +38,7 @@ interface ContainerProps {
         $shadow?: string;
         $area?: string;
         $margin?: string;
+        $textAlign?: string;
     }
 
 }

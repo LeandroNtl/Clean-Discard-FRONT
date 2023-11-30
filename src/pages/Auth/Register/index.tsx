@@ -22,6 +22,7 @@ const Register = () => {
     });
 
     const [isRegistered, setIsRegistered] = useState(false);
+    const [error, setError] = useState('')
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
@@ -39,6 +40,7 @@ const Register = () => {
             toast.success(response.data.message);
         } catch (error: any) {
             toast.error(error.response.data.error);
+            setError(error.response.data.error)
         }
     }
 
@@ -49,7 +51,7 @@ const Register = () => {
     return (
         <Fragment>
             <ToastContainer />
-            <RegisterForm $onSubmit={handleRegister} $fields={{ ...formData, handleChange }} />
+            <RegisterForm $onSubmit={handleRegister} $fields={{ ...formData, handleChange }} $children={error ? <p>{error}</p> : null} />
         </Fragment>
     );
 

@@ -1,12 +1,13 @@
 
 export interface Waste {
+    
     id: number,
     name: string,
-    description: string,
-    icon: string
+    description: string
+
 }
 
-export interface Marks {
+export interface DiscardPoint {
 
     id: number,
     name: string,
@@ -15,7 +16,36 @@ export interface Marks {
     latitude: number,
     longitude: number,
     evaluation: number,
-    wastes: Waste[],
-    icon: string
 
 }
+
+export interface DiscardPointWaste {
+
+    id: number,
+    discard_point_id: number,
+    waste_id: number,
+
+}
+
+export interface MapMarker {
+    
+    id: number,
+    name: string,
+    status: number,
+    description: string,
+    latitude: number,
+    longitude: number,
+    evaluation: number,
+    wastes: Waste[]
+
+}
+
+export interface UserLocation {
+
+    loaded: boolean,
+    coordinates: {
+        lat: number,
+        lng: number
+    }
+    
+} 

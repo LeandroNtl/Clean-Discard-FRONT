@@ -4,7 +4,6 @@ import { Fragment, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Navigate } from 'react-router-dom';
-// import { CircularProgress } from '@mui/material';
 
 interface FormData {
     email: string;
@@ -19,6 +18,7 @@ const Login = () => {
     });
 
     const [token, setToken] = useState('')
+    const [error, setError] = useState('')
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
@@ -34,6 +34,7 @@ const Login = () => {
             setToken(response.data.token)
         } catch (error: any) {
             toast.error(error.response.data.error);
+            setError(error.response.data.error)
         }
     }
 
@@ -46,7 +47,7 @@ const Login = () => {
     return (
         <Fragment>
             <ToastContainer />
-            <LoginForm $onSubmit={handleLogin} $fields={{ ...formData, handleChange }} />
+            <LoginForm $onSubmit={handleLogin} $fields={{ ...formData, handleChange }} $children={error ? <p>{error}</p> : null} />
         </Fragment>  
     );
 

@@ -1,9 +1,10 @@
+import GoogleMaps from "../../components/GoogleMap";
 
 const DiscardPoints = () => {
 
     return (
 
-        <h1>Discard Points</h1>
+        <GoogleMaps />
         
     );
 

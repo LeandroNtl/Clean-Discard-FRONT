@@ -1,6 +1,7 @@
 import { Form, FormField, FormLabel, FormInput, FormButton  } from '../styles';
 
 interface RegisterFormProps {
+    $children?: React.ReactNode;
     $onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
     $fields?: {
         name: string;
@@ -16,6 +17,7 @@ const RegisterForm = (props: RegisterFormProps) => {
     return (
         <Form onSubmit={props.$onSubmit}>
             <h2>Register</h2>
+            {props.$children}
             <FormField>
                 <FormLabel htmlFor="name">Name</FormLabel>
                 <FormInput type="text" id="name" name="name" placeholder="Digite seu nome" autoComplete="on" value={props.$fields?.name} onChange={props.$fields?.handleChange} required />

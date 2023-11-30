@@ -1,6 +1,7 @@
 import { Form, FormField, FormLabel, FormInput, FormButton  } from '../styles';
 
 interface LoginFormProps {
+    $children?: React.ReactNode;
     $onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
     $fields?: {
         email: string;
@@ -14,6 +15,7 @@ const LoginForm = (props: LoginFormProps) => {
     return (
         <Form onSubmit={props.$onSubmit}>
             <h2>Login</h2>
+            {props.$children}
             <FormField>
                 <FormLabel htmlFor="email">Email</FormLabel>
                 <FormInput type="email" id="email" name="email" placeholder="Digite seu email" autoComplete="on" value={props.$fields?.email} onChange={props.$fields?.handleChange} required />

@@ -19,6 +19,7 @@ interface ContainerProps {
     $area?: string;
     $textAlign?: string;
     $margin?: string;
+    $wrap?: string;
 
     $resposive?: {
         $width?: string;

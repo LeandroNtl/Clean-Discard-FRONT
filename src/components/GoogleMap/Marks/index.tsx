@@ -1,0 +1,90 @@
+import { Waste, DiscardPoint, DiscardPointWaste, MapMarker } from '../types';
+import { useEffect, useState } from 'react';
+
+import { MarkerF } from '@react-google-maps/api';
+import api from '../../../services/api';
+
+interface MarksProps {
+    setSelectedMarker: (marker: MapMarker | null) => void;
+}
+
+const Marks = ({ setSelectedMarker }: MarksProps) => {
+
+    const [wastes, setWastes] = useState<Waste[]>([]);
+    const [discardPoints, setDiscardPoints] = useState<DiscardPoint[]>([]);
+    const [discardPointWastes, setDiscardPointWastes] = useState<DiscardPointWaste[]>([]);
+    const [mapMarkers, setMapMarkers] = useState<MapMarker[]>([]);
+
+    useEffect(() => {
+
+        api.get('/wastes').then(response => {
+            setWastes(response.data);
+        });
+        
+        api.get('/discard_points').then(response => {
+            setDiscardPoints(response.data);
+        });
+
+        api.get('/discard_point_wastes').then(response => {
+            setDiscardPointWastes(response.data);
+        });
+
+    }, []);
+
+    const createMapMarkers = () => {
+
+        const mapMarkers: MapMarker[] = [];
+
+        discardPoints.forEach(discardPoint => {
+            const mapMarker: MapMarker = {
+                id: discardPoint.id,
+                name: discardPoint.name,
+                latitude: discardPoint.latitude,
+                longitude: discardPoint.longitude,
+                status: discardPoint.status,
+                description: discardPoint.description,
+                evaluation: discardPoint.evaluation,
+                wastes: []
+            };
+
+            discardPointWastes.forEach(discardPointWaste => {
+                if (discardPointWaste.discard_point_id === discardPoint.id) {
+                    wastes.forEach(waste => {
+                        if (waste.id === discardPointWaste.waste_id) {
+                            mapMarker.wastes.push(waste);
+                        }
+                    });
+                }
+            });
+
+            mapMarkers.push(mapMarker);
+
+        });
+
+        setMapMarkers(mapMarkers);
+
+    };
+
+    useEffect(() => {
+        createMapMarkers();
+    }, [wastes, discardPoints, discardPointWastes]);
+
+    return (
+        <>
+            {mapMarkers.map(mapMarker => (
+                <MarkerF
+                    key={mapMarker.id}
+                    position={{ lat: mapMarker.latitude, lng: mapMarker.longitude }}
+                    onClick={() => {
+                        setSelectedMarker(mapMarker);
+                    }}
+                />
+            ))}
+
+            
+        </>
+    );
+
+};
+
+export default Marks;

@@ -1,5 +1,19 @@
 import { styled } from 'styled-components';
 
+const WindowContainer = styled.div`
+        
+    max-width: 250px;
+    height: 100%;
+
+    gap: 0.5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+`;
+
 const TextContainer = styled.div`
 
     width: 100%;
@@ -109,4 +123,4 @@ const Button = styled.button`
 
 `;
 
-export { TextContainer, EvaluationContainer, EvaluationStars, WasteIconContainer, WasteIcon, ButtonContainer, Button };
+export { TextContainer, EvaluationContainer, EvaluationStars, WasteIconContainer, WasteIcon, ButtonContainer, Button, WindowContainer };

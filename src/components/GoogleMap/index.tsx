@@ -1,12 +1,15 @@
-import { Waste, DiscardPoint, DiscardPointWaste, MapMarker, UserLocation } from './types';
+import { MapMarker, UserLocation } from './types';
 import { useEffect, useState, useMemo } from 'react';
-import api from '../../services/api';
-import { GoogleMap, useLoadScript, MarkerF, InfoWindowF, DirectionsRenderer } from '@react-google-maps/api';
-import { TextContainer, EvaluationContainer, WasteIconContainer, WasteIcon, Button, ButtonContainer } from './styles';
-import Key from '../../../config';
-import { Tooltip } from '@mui/material';
-import Container from '../Container';
 import { useLocation } from 'react-router-dom';
+
+import { GoogleMap, useLoadScript, InfoWindowF, DirectionsRenderer } from '@react-google-maps/api';
+import { TextContainer, EvaluationContainer, WasteIconContainer, WasteIcon, Button, ButtonContainer, WindowContainer } from './styles';
+
+import Key from '../../../config';
+import Container from '../Container';
+import { Tooltip } from '@mui/material';
+
+import Marks from './Marks';
 
 const GoogleMaps = () => {
 
@@ -22,11 +25,6 @@ const GoogleMaps = () => {
 
     }, []);
 
-    const [wastes, setWastes] = useState<Waste[]>([]);
-    const [discardPoints, setDiscardPoints] = useState<DiscardPoint[]>([]);
-    const [discardPointWastes, setDiscardPointWastes] = useState<DiscardPointWaste[]>([]);
-    const [mapMarkers, setMapMarkers] = useState<MapMarker[]>([]);
-
     const [selectedMarker, setSelectedMarker] = useState<MapMarker | null>(null);
 
     const [directions, setDirections] = useState<google.maps.DirectionsResult | null>(null);
@@ -38,7 +36,6 @@ const GoogleMaps = () => {
         }
     });
 
-    // VERIFICA SE A PÁGINA ATUAL É A DE LOCAIS DE DESCARTE
     const page = useLocation();
     const locations = [
         {
@@ -53,61 +50,6 @@ const GoogleMaps = () => {
 
     const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-
-        api.get('/wastes').then(response => {
-            setWastes(response.data);
-        });
-        
-        api.get('/discard_points').then(response => {
-            setDiscardPoints(response.data);
-        });
-
-        api.get('/discard_point_wastes').then(response => {
-            setDiscardPointWastes(response.data);
-        });
-
-    }, []);
-
-    const createMapMarkers = () => {
-
-        const mapMarkers: MapMarker[] = [];
-
-        discardPoints.forEach(discardPoint => {
-            const mapMarker: MapMarker = {
-                id: discardPoint.id,
-                name: discardPoint.name,
-                latitude: discardPoint.latitude,
-                longitude: discardPoint.longitude,
-                status: discardPoint.status,
-                description: discardPoint.description,
-                evaluation: discardPoint.evaluation,
-                wastes: []
-            };
-
-            discardPointWastes.forEach(discardPointWaste => {
-                if (discardPointWaste.discard_point_id === discardPoint.id) {
-                    wastes.forEach(waste => {
-                        if (waste.id === discardPointWaste.waste_id) {
-                            mapMarker.wastes.push(waste);
-                        }
-                    });
-                }
-            });
-
-            mapMarkers.push(mapMarker);
-
-        });
-
-        setMapMarkers(mapMarkers);
-
-    };
-
-    useEffect(() => {
-        createMapMarkers();
-    }, [wastes, discardPoints, discardPointWastes]);
-
-    // DIRECTIONS
     const onSuccess = (location: any) => {
         setUserLocation({
             loaded: true,
@@ -148,47 +90,43 @@ const GoogleMaps = () => {
     return (
         <GoogleMap mapContainerStyle={{height: '100%', width: '100%' }} center={mapCenter} zoom={15}>
 
-            {mapMarkers.map((marker) => (
-                <MarkerF
-                    key={marker.id}
-                    position={{lat: marker.latitude, lng: marker.longitude}}
-                    onClick={() => {
-                        setSelectedMarker(marker);
-                    }}
-                />
-            ))}
+            <Marks setSelectedMarker={setSelectedMarker} />
 
             {selectedMarker ? (
                 <InfoWindowF
                     position={{lat: selectedMarker.latitude, lng: selectedMarker.longitude}}
                     onCloseClick={() => setSelectedMarker(null)}
                 >
-                    <Container $width="95%" $gap="0.5rem" $direction="column">
-                        <TextContainer>
-                            <h2>{selectedMarker.name}</h2>
-                            <p>{selectedMarker.description}</p>
-                        </TextContainer>
-                        <EvaluationContainer>
-                            <h3>{selectedMarker.evaluation}</h3>
-                        </EvaluationContainer>
-                        {page.pathname === locations[1].pathname ? (
-                            <ButtonContainer>
-                                <Button onClick={() => {
-                                    directionsService.route({
-                                        origin: new google.maps.LatLng(userLocation.coordinates.lat, userLocation.coordinates.lng),
-                                        destination: new google.maps.LatLng(selectedMarker.latitude, selectedMarker.longitude),
-                                        travelMode: google.maps.TravelMode.DRIVING
-                                    }, directionsCallback);
-                                }}>Directions</Button>
-                            </ButtonContainer>
-                        ) : null}
-                        <WasteIconContainer>
-                            {selectedMarker.wastes.map(waste => (
-                                <Tooltip title={waste.name} placement="top" key={waste.id}>
-                                    <WasteIcon src={`../../src/assets/icons/${waste.name}.png`} />
-                                </Tooltip>
-                            ))}
-                        </WasteIconContainer>
+                    <Container $width="95%">
+                        <WindowContainer>
+                            <TextContainer>
+                                <h2>{selectedMarker.name}</h2>
+                                <p>{selectedMarker.description}</p>
+                            </TextContainer>
+                            <EvaluationContainer>
+                                <h3>{selectedMarker.evaluation}</h3>
+                            </EvaluationContainer>
+                            {page.pathname === locations[1].pathname ? (
+                                <ButtonContainer>
+                                    <Button onClick={() => {
+                                        directionsService.route({
+                                            origin: new google.maps.LatLng(userLocation.coordinates.lat, userLocation.coordinates.lng),
+                                            destination: new google.maps.LatLng(selectedMarker.latitude, selectedMarker.longitude),
+                                            travelMode: google.maps.TravelMode.DRIVING
+                                        }, directionsCallback);
+                                    }}>Directions</Button>
+                                </ButtonContainer>
+                            ) : null}
+                            <WasteIconContainer>
+                                {selectedMarker.wastes.length > 0 ? (
+                                    selectedMarker.wastes.map(waste => (
+                                        <Tooltip title={waste.name} placement="top" key={waste.id}>
+                                            <WasteIcon src={`../../src/assets/icons/${waste.name}.png`} />
+                                        </Tooltip>
+                                    ))
+                                ) : <p>Não há tipos registrados de resíduos neste ponto de descarte.</p>}
+                            </WasteIconContainer>
+                        </WindowContainer>  
                     </Container>
                 </InfoWindowF>
             ) : null}

@@ -13,6 +13,7 @@ const StyledContainer = styled.div<ContainerProps>`
     margin: ${props => props.$margin || '0'};
 
     display: flex;
+    flex-wrap: ${props => props.$wrap || 'nowrap'};
     flex-direction: ${props => props.$direction || 'row'};
     align-items: ${props => props.$align || 'center'};
     justify-content: ${props => props.$justify || 'center'};

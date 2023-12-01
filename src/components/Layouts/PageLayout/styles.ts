@@ -25,8 +25,6 @@ const LayoutContainer = styled.div`
             "header"
             "main"
             "aside";
-
-        background-color: red;
     }
 
 `;

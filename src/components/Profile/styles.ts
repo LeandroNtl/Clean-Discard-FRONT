@@ -13,6 +13,10 @@ const ProfileContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 768px) {
+        padding: 0 1rem;
+    }
     
 `;
 
@@ -31,6 +35,10 @@ const ProfileBox = styled.div`
 
     &:hover {
         cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+        padding: 0.5rem;
     }
 
 `;

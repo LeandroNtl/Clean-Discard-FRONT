@@ -51,11 +51,11 @@ const DiscardPoints = () => {
 
     return (
 
-        <Container $width="100%" $height="100%" $justify="space-between" $padding="0.5rem">
-            <Container $width="74%" $height="100%" $border="2px solid #008000">
+        <Container $width="100%" $height="100%" $justify="space-between" $padding="0.5rem" $resposive={{ $direction: "column", $padding: "0.5rem", $gap: "0.5rem", $justify: "space-between", $width: "100vw" }}>
+            <Container $width="74%" $height="100%" $border="2px solid #008000" $resposive={{ $width: "100%", $height: "60vh", $padding: "0.5rem", $border: "2px solid #008000" }}>
                 <GoogleMaps />
             </Container>
-            <Container $width="25%" $height="89vh" $border="2px solid #008000" $direction="column" $padding="0.5rem" $justify="space-between" $align="center" $overflowY='auto' $radius="0.5rem">
+            <Container $width="25%" $height="89vh" $border="2px solid #008000" $direction="column" $padding="0.5rem" $justify="space-between" $align="center" $overflowY='auto' $radius="0.5rem" $resposive={{ $width: "100vw", $direction: "row", $overflowX: "auto", $overflowY: "none", $padding: "0.5rem", $gap: "0.5rem", $justify: "flex-start", $align: "center" }}> 
                 <Points userLocation={userLocation} />
             </Container>
         </Container>

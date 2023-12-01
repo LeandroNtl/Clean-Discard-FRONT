@@ -28,11 +28,15 @@ const StyledContainer = styled.div<ContainerProps>`
     color: ${props => props.$color || '#000000'};
     box-shadow: ${props => props.$shadow || 'none'};
 
+    flex-shrink: 0;
+
     &::-webkit-scrollbar {
         display: ${props => props.$scrollbar || 'none'};
     }
 
     @media (max-width: 768px) {
+
+        display: ${props => props.$resposive?.$display || 'flex'};
 
         width: ${props => props.$resposive?.$width || '100%'};
         height: ${props => props.$resposive?.$height || 'auto'};
@@ -43,8 +47,12 @@ const StyledContainer = styled.div<ContainerProps>`
         gap: ${props => props.$resposive?.$gap || '0'};
         border-radius: ${props => props.$resposive?.$radius || '0'};
         border: ${props => props.$resposive?.$border || 'none'};
-        margin: ${props => props.$resposive?.$margin || '0'}
-
+        margin: ${props => props.$resposive?.$margin || '0'};
+        background-color: ${props => props.$resposive?.$bg || 'transparent'};
+        color: ${props => props.$resposive?.$color || '#000000'};
+        box-shadow: ${props => props.$resposive?.$shadow || 'none'};
+        overflow-x: ${props => props.$resposive?.$overflowX || 'none'};
+        overflow-y: ${props => props.$resposive?.$overflowY || 'none'};
     }
     
 `;

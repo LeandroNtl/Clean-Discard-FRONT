@@ -40,6 +40,8 @@ interface ContainerProps {
         $area?: string;
         $margin?: string;
         $textAlign?: string;
+        $wrap?: string;
+        $display?: string;
     }
 
 }

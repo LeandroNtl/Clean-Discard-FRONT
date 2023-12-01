@@ -1,8 +1,7 @@
 import { ProfileContainer, ProfileBox, ProfileDropdown, ProfileDropdownItem, ProfileDropdownLink } from './styles';
-import { useState } from 'react';
-//import { useAuth } from '../../hooks/useAuth';
-// importar icones de user e logout do @mui/icons-material
-import { AccountCircle, Login } from '@mui/icons-material';
+import { useState, useEffect } from 'react';
+import { AccountCircle, Login, Logout } from '@mui/icons-material';
+import { useCookies } from 'react-cookie';
 
 const links = [
     {
@@ -27,7 +26,33 @@ const links = [
 
 const Profile = () => {
 
-    //const { user, signOut } = useAuth();
+    const [cookies, setCookie, removeCookie] = useCookies(['token']);
+
+    const handleLogout = () => {
+        setCookie('token', '', { path: '/' }); // apenas para remover o alerta de variável não utilizada
+        removeCookie('token', { path: '/' });
+    }
+
+    useEffect(() => {
+        
+        if (cookies.token) {
+            links.pop();
+            links.push({
+                name: 'logout',
+                path: '/',
+                icon: <Logout />
+            });
+        } else {
+            links.pop();
+            links.push({
+                name: 'login',
+                path: '/auth/login',
+                icon: <Login />
+            });
+        }
+
+    }, [cookies.token]);
+
     const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
     const toggleProfileDropdown = () => {
@@ -42,10 +67,17 @@ const Profile = () => {
                     {links.map((item, index) => {
                         return (
                             <ProfileDropdownItem key={index}>
-                                <ProfileDropdownLink to={item.path}>
-                                    {item.name}
-                                    {item.icon && item.icon}
-                                </ProfileDropdownLink>
+                                { item.name == 'logout' ? (
+                                    <ProfileDropdownLink to={item.path} onClick={handleLogout}>
+                                        {item.icon}
+                                        {item.name}
+                                    </ProfileDropdownLink>
+                                ) : (
+                                    <ProfileDropdownLink to={item.path}>
+                                        {item.icon}
+                                        {item.name}
+                                    </ProfileDropdownLink>
+                                )}
                             </ProfileDropdownItem>
                         );
                     })}

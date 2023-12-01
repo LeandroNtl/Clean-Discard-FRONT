@@ -3,7 +3,8 @@ import api from '../../../services/api';
 import { Fragment, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 interface FormData {
     email: string;
@@ -17,8 +18,9 @@ const Login = () => {
         password: ''
     });
 
-    const [token, setToken] = useState('')
-    const [error, setError] = useState('')
+    const [mensagem, setMensagem] = useState('')
+    const [cookies, setCookie] = useCookies(['token']);
+    const navigate = useNavigate();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
@@ -31,23 +33,25 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await api.post('/auth/login', formData);
-            setToken(response.data.token)
+            setCookie('token', response.data.token, { path: '/' });
+
+            if (cookies.token) {
+                toast.success('Login realizado com sucesso!');
+                setTimeout(() => {
+                    navigate('/');
+                }, 1000);
+            }
+
         } catch (error: any) {
             toast.error(error.response.data.error);
-            setError(error.response.data.error)
+            setMensagem("Erro ao realizar login!");
         }
-    }
-
-    if (token) {
-
-        return <Navigate to="/" />
-
     }
 
     return (
         <Fragment>
             <ToastContainer />
-            <LoginForm $onSubmit={handleLogin} $fields={{ ...formData, handleChange }} $children={error ? <p>{error}</p> : null} />
+            <LoginForm $onSubmit={handleLogin} $fields={{ ...formData, handleChange }} $children={mensagem ? mensagem : ''} />
         </Fragment>  
     );
 

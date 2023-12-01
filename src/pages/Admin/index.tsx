@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Container from "../../components/Container";
 import Wastes from "./Wastes";
 
-
 const Admin = () => {
 
     const links = [
@@ -29,11 +28,13 @@ const Admin = () => {
     return (
         <Container $width="100%" $height="100%" $padding="0.3rem" $gap="0.5rem" $direction="column" $align="center" $justify="center">
             <Container $width="100%" $height="20rem" $border="2px solid #008000" $radius="0.5rem" $gap="0.5rem" $padding="0.5rem" $overflowX="auto" $justify="flex-start">
-                { links.map(link => (
-                    <Link to={link.path}>
-                        <h2>{link.name}</h2>
-                    </Link>
-                )) }
+                { links.map((item, index) => {
+                    return (
+                        <Link key={index} to={item.path}>
+                            {item.name}
+                        </Link>
+                    );
+                })}
             </Container>
         </Container>
     );

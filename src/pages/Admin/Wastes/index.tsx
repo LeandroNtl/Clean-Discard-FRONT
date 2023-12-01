@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import api from "../../../services/api";
+import { useCookies } from "react-cookie";
 
 interface Waste {
     name: string;
@@ -7,6 +8,8 @@ interface Waste {
 }
 
 const Wastes = () => {
+
+    const [cookies] = useCookies(['token']);
 
     const [waste, setWaste] = useState<Waste>({
         name: '',
@@ -16,10 +19,14 @@ const Wastes = () => {
     const [wastes, setWastes] = useState<Waste[]>([]);
 
     useEffect(() => {
-        api.get('/wastes').then(response => {
+        api.get('/wastes', {
+            headers: {
+                Authorization: `Bearer ${cookies.token}`
+            }
+        }).then(response => {
             setWastes(response.data);
         });
-    }, []);
+    }), [];
     
     const handleCreateWaste = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -29,10 +36,13 @@ const Wastes = () => {
             description: waste.description
         }
 
-        api.post('/wastes', data).then(response => {
+        api.post('/wastes', data, {
+            headers: {
+                Authorization: `Bearer ${cookies.token}`
+            }
+        }).then(response => {
             setWastes([...wastes, response.data]);
         });
-
     }
 
     return (

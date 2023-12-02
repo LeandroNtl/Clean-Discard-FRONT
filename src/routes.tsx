@@ -7,7 +7,7 @@ import DiscardPoints from './pages/DiscardPoints';
 import Auth from './pages/Auth';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
-import { Wastes, Admin } from './pages/Admin';
+import { Wastes, Admin, Points } from './pages/Admin';
 import Cookies from 'universal-cookie';
 import tokenValidator from './services/tokenValidator';
 
@@ -70,6 +70,10 @@ const BrowserRouter = createBrowserRouter([
             {
                 path: '/admin/wastes',
                 element: <Wastes />
+            },
+            {
+                path: '/admin/discard-points',
+                element: <Points />
             },
             {
                 path: '*',

@@ -29,11 +29,11 @@ const Points = ({ userLocation }: MarksProps) => {
             setWastes(response.data);
         });
         
-        api.get('/discard_points').then(response => {
+        api.get('/discard-points').then(response => {
             setDiscardPoints(response.data);
         });
 
-        api.get('/discard_point_wastes').then(response => {
+        api.get('/discard-point-wastes').then(response => {
             setDiscardPointWastes(response.data);
         });
 

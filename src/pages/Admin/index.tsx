@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 import Container from "../../components/Container";
 import Wastes from "./Wastes";
+import Points from "./Points";
 
 const Admin = () => {
 
@@ -12,7 +13,7 @@ const Admin = () => {
         },
         {
             name: 'Locais',
-            path: '/admin/points'
+            path: '/admin/discard-points'
         },
         {
             name: 'Usuários',
@@ -42,4 +43,4 @@ const Admin = () => {
 };
 
 
-export { Wastes, Admin };
+export { Wastes, Admin, Points };

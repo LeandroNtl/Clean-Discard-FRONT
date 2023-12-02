@@ -1,4 +1,5 @@
 import LoginForm from "./LoginForm";
-import RegisterForm from "./Register";
+import RegisterForm from "./RegisterForm";
+import PointsForm from "./PointsForm";
 
-export { LoginForm, RegisterForm };
+export { LoginForm, RegisterForm, PointsForm };

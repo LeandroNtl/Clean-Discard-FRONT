@@ -22,6 +22,37 @@ const FormField = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    select {
+
+        width: 50%;
+        padding: 1rem 0.5rem;
+        margin: 0.5rem 0;
+
+        align-self: flex-start;
+
+        border: 1px solid #000000;
+        border-radius: 0.5rem;
+
+        font-size: 1.2rem;
+        font-weight: 600;
+
+        outline: none;
+
+        &:focus {
+
+            border: 1px solid #000800;
+            
+        }
+
+        option {
+
+            font-size: 1.2rem;
+            font-weight: 600;
+
+        }
+
+    }
     
 `;
 

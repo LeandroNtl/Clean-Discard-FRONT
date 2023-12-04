@@ -1,5 +1,6 @@
 import { Waste, DiscardPoint, DiscardPointWaste, MapMarker } from '../types';
 import { useEffect, useState } from 'react';
+import { useCookies } from "react-cookie";
 
 import { MarkerF } from '@react-google-maps/api';
 import api from '../../../services/api';
@@ -14,6 +15,8 @@ const Marks = ({ setSelectedMarker }: MarksProps) => {
     const [discardPoints, setDiscardPoints] = useState<DiscardPoint[]>([]);
     const [discardPointWastes, setDiscardPointWastes] = useState<DiscardPointWaste[]>([]);
     const [mapMarkers, setMapMarkers] = useState<MapMarker[]>([]);
+    const [cookies, setCookies] = useCookies(['point']);
+    cookies
 
     useEffect(() => {
 
@@ -77,6 +80,7 @@ const Marks = ({ setSelectedMarker }: MarksProps) => {
                     position={{ lat: mapMarker.latitude, lng: mapMarker.longitude }}
                     onClick={() => {
                         setSelectedMarker(mapMarker);
+                        setCookies('point', mapMarker.id, { path: '/' });
                     }}
                 />
             ))}

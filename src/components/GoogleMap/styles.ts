@@ -87,7 +87,7 @@ const WasteIcon = styled.img`
 
 const ButtonContainer = styled.div`
     
-    width: 80%;
+    width: 50%;
 
     display: flex;
     justify-content: center;

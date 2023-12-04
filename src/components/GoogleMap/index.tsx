@@ -10,6 +10,7 @@ import Container from '../Container';
 import { Tooltip } from '@mui/material';
 
 import Marks from './Marks';
+import Evaluations from './Evaluations';
 
 const GoogleMaps = () => {
 
@@ -49,6 +50,11 @@ const GoogleMaps = () => {
     ];
 
     const [error, setError] = useState<string | null>(null);
+    const [showComments, setShowComments] = useState<boolean>(false);
+
+    const toggleComments = () => {
+        setShowComments(!showComments);
+    };
 
     const onSuccess = (location: any) => {
         setUserLocation({
@@ -88,7 +94,7 @@ const GoogleMaps = () => {
     if (error) return <div>{error}</div>;
 
     return (
-        <GoogleMap mapContainerStyle={{height: '100%', width: '100%' }} center={mapCenter} zoom={15}>
+        <GoogleMap mapContainerStyle={{height: '100%', width: '100%'}} center={mapCenter} zoom={15}>
 
             <Marks setSelectedMarker={setSelectedMarker} />
 
@@ -97,7 +103,7 @@ const GoogleMaps = () => {
                     position={{lat: selectedMarker.latitude, lng: selectedMarker.longitude}}
                     onCloseClick={() => setSelectedMarker(null)}
                 >
-                    <Container $width="95%">
+                    <Container $width="250px">
                         <WindowContainer>
                             <TextContainer>
                                 <h2>{selectedMarker.name}</h2>
@@ -106,16 +112,24 @@ const GoogleMaps = () => {
                             <EvaluationContainer>
                                 <h3>{selectedMarker.evaluation}</h3>
                             </EvaluationContainer>
-                            {page.pathname === locations[1].pathname ? (
+                            <Container $width="100%" $height="auto" $gap="0.5rem">
+                                {page.pathname === locations[1].pathname ? (
+                                    <ButtonContainer>
+                                        <Button onClick={() => {
+                                            directionsService.route({
+                                                origin: new google.maps.LatLng(userLocation.coordinates.lat, userLocation.coordinates.lng),
+                                                destination: new google.maps.LatLng(selectedMarker.latitude, selectedMarker.longitude),
+                                                travelMode: google.maps.TravelMode.DRIVING
+                                            }, directionsCallback);
+                                        }}>Ir</Button>
+                                    </ButtonContainer>
+                                ) : null}
                                 <ButtonContainer>
-                                    <Button onClick={() => {
-                                        directionsService.route({
-                                            origin: new google.maps.LatLng(userLocation.coordinates.lat, userLocation.coordinates.lng),
-                                            destination: new google.maps.LatLng(selectedMarker.latitude, selectedMarker.longitude),
-                                            travelMode: google.maps.TravelMode.DRIVING
-                                        }, directionsCallback);
-                                    }}>Directions</Button>
+                                    <Button onClick={() => toggleComments()}>{showComments ? 'Esconder' : 'Ver'} comentários</Button>
                                 </ButtonContainer>
+                            </Container>
+                            {showComments ? (
+                                <Evaluations discard_point_id={selectedMarker.id} />
                             ) : null}
                             <WasteIconContainer>
                                 {selectedMarker.wastes.length > 0 ? (

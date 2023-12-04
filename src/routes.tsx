@@ -10,6 +10,7 @@ import Register from './pages/Auth/Register';
 import { Wastes, Admin, Points } from './pages/Admin';
 import Cookies from 'universal-cookie';
 import tokenValidator from './services/tokenValidator';
+import Evaluations from './pages/Admin/Evaluations';
 
 const cookies = new Cookies();
 
@@ -74,6 +75,10 @@ const BrowserRouter = createBrowserRouter([
             {
                 path: '/admin/discard-points',
                 element: <Points />
+            },
+            {
+                path: '/admin/evaluations',
+                element: <Evaluations />
             },
             {
                 path: '*',

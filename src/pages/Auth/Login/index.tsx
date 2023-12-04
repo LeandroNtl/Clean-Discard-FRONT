@@ -19,7 +19,7 @@ const Login = () => {
     });
 
     const [mensagem, setMensagem] = useState('')
-    const [cookies, setCookie] = useCookies(['token']);
+    const [cookies, setCookie] = useCookies(['token', 'user']);
     const navigate = useNavigate();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +34,8 @@ const Login = () => {
         try {
             const response = await api.post('/auth/login', formData);
             setCookie('token', response.data.token, { path: '/' });
-
+            setCookie('user', response.data.id, { path: '/' });
+         
             if (cookies.token) {
                 toast.success('Login realizado com sucesso!');
                 setTimeout(() => {

@@ -8,7 +8,7 @@ const tokenValidator = async (token: string) => {
             },
         });
 
-        return response.data.valid;
+        return response.data;
 
     } catch (err) {
 

@@ -1,5 +1,5 @@
 import { createBrowserRouter, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Page from './pages/Page';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
@@ -21,32 +21,47 @@ interface ProtectedRouteProps {
 const ProtectedRoute = (props : ProtectedRouteProps) => {
     
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
 
-        const token = cookies.get('token');
+        const verifyToken = async () => {
 
-        if (!token) {
-            navigate('/auth/login');
-            return;
-        }
+            try {
+                const token = cookies.get('token');
+                
+                if (!token) {
+                    navigate('/auth/login');
+                    return;
+                }
 
-        tokenValidator(token)
-            .then(() => {
-                return;
-            })
-            .catch(() => {
+                const isValid = await tokenValidator(token);
+
+                if (!isValid.valid) {
+                    navigate('/auth/login');
+                    return;
+                }
+            } catch (error) {
                 navigate('/auth/login');
                 return;
-            });
+            } finally {
+                setIsLoading(false);
+            }
+        }
+    
+        verifyToken();  
 
     }, [navigate]);
 
-    return (
-        <>
+    if (isLoading) {
+        return (
+            <div>Carregando...</div>
+        )
+    } return (
+        <div>
             {props.children}
-        </>
-    );
+        </div>
+    )
 
 };
 
@@ -70,7 +85,7 @@ const BrowserRouter = createBrowserRouter([
             },
             {
                 path: '/admin/wastes',
-                element: <Wastes />
+                element: <ProtectedRoute><Wastes /></ProtectedRoute>
             },
             {
                 path: '/admin/discard-points',
@@ -78,7 +93,7 @@ const BrowserRouter = createBrowserRouter([
             },
             {
                 path: '/admin/evaluations',
-                element: <Evaluations />
+                element: <ProtectedRoute><Evaluations /></ProtectedRoute>
             },
             {
                 path: '*',

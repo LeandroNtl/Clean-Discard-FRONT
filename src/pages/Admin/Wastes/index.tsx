@@ -26,7 +26,7 @@ const Wastes = () => {
         }).then(response => {
             setWastes(response.data);
         });
-    }), [];
+    }, [cookies.token]);
     
     const handleCreateWaste = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();

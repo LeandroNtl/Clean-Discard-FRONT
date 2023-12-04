@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import api from "../../../services/api";
 import { useCookies } from "react-cookie";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { EvaluationForm } from "../../../components/Forms";
+import tokenValidator from "../../../services/tokenValidator";
 
 interface FormData {
 
@@ -23,7 +24,8 @@ const Evaluations = () => {
         comment: '',
     });
 
-    const [cookies] = useCookies(['token', 'user', 'point']);
+    const [cookies] = useCookies(['token', 'point']);
+    const [user_id, setUser_id] = useState(0);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
 
@@ -44,24 +46,52 @@ const Evaluations = () => {
                 }
             });
             toast.success(response.data.message);
+            setTimeout(() => {
+                window.location.href = '/discard-points';
+            }, 3000);
         } catch (error: any) {
             toast.error(error.response.data.error);
         }
     }
 
     useEffect(() => {
+
+        const verifyToken = async () => {
+            try {
+
+                const token = cookies.token;
+                
+                if (!token) {
+                    return;
+                }
+
+                const isValid = await tokenValidator(token);
+
+                if (!isValid.valid) {
+                    return;
+                }
+                setUser_id(isValid.id);
+
+            } catch (error) {
+                return;
+            }
+        }
+
+        verifyToken();
+
         setFormData((prevState) => ({
             ...prevState,
-            user_id: cookies.user,
+            user_id: user_id,
             discard_point_id: cookies.point
         }));
+
     }, []);
 
     return (
-        <>
+        <Fragment>
             <ToastContainer />
             <EvaluationForm $onSubmit={handleRegister} $fields={{ ...formData, handleChange }} />
-        </>
+        </Fragment>
     );
 
 };

@@ -16,9 +16,13 @@ const EvaluationForm = (props: EvaluationFormProps) => {
 
     return (
         <Form onSubmit={props.$onSubmit}>
-            <FormField>
+            <FormField $isRadio>
                 <FormLabel htmlFor="score">Score</FormLabel>
-                <FormInput type="number" id="score" name="score" placeholder="Digite sua nota" autoComplete="on" value={props.$fields?.score} onChange={props.$fields?.handleChange} required />
+                <FormInput type="radio" id="score" name="score" value={1} onChange={props.$fields?.handleChange} required /> 1
+                <FormInput type="radio" id="score" name="score" value={2} onChange={props.$fields?.handleChange} required /> 2
+                <FormInput type="radio" id="score" name="score" value={3} onChange={props.$fields?.handleChange} required /> 3
+                <FormInput type="radio" id="score" name="score" value={4} onChange={props.$fields?.handleChange} required /> 4
+                <FormInput type="radio" id="score" name="score" value={5} onChange={props.$fields?.handleChange} required /> 5
             </FormField>
             <FormField>
                 <FormLabel htmlFor="comment">Comment</FormLabel>

@@ -1,6 +1,7 @@
 import { Form, FormField, FormLabel, FormInput, FormButton  } from '../styles';
 import api from '../../../services/api';
 import { useState, useEffect } from 'react';
+import Container from '../../Container';
 
 type Waste = {
     id: number;
@@ -14,8 +15,8 @@ interface PointsFormProps {
         description: string;
         latitude: number;
         longitude: number;
-        waste_id: number;
-        handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+        waste_id: number[];
+        handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     }
 }
 
@@ -49,7 +50,7 @@ const PointsForm = (props: PointsFormProps) => {
                 <FormLabel htmlFor="longitude">Longitude</FormLabel>
                 <FormInput type="number" id="longitude" name="longitude" placeholder="Digite a longitude do ponto" autoComplete="on" value={props.$fields?.longitude} onChange={props.$fields?.handleChange} required />
             </FormField>
-            <FormField>
+            {/* <FormField>
                 <FormLabel htmlFor="wastes">Wastes</FormLabel>
                 <select name="waste_id" id="wastes" value={props.$fields?.waste_id} onChange={props.$fields?.handleChange} required>
                     <option value="">Selecione um resíduo</option>
@@ -57,6 +58,18 @@ const PointsForm = (props: PointsFormProps) => {
                         <option key={waste.id} value={waste.id}>{waste.name}</option>
                     ))}
                 </select>
+            </FormField> */}
+            {/* check box  para selecionar os resíduos */}
+            <FormField>
+                <FormLabel htmlFor="wastes">Wastes</FormLabel>
+                <Container $align='flex-start' $justify='flex-start' $wrap='wrap' $gap='0.5rem' $width='100%' $height='100%' $padding='0.5rem' $border='1px solid #ccc' $radius='0.5rem'>
+                    {wastes.map(waste => (
+                        <label key={waste.id}>
+                            <input type="checkbox" name="waste_id" value={waste.id} onChange={props.$fields?.handleChange} />
+                            {waste.name}
+                        </label>
+                    ))}
+                </Container>
             </FormField>
 
             <FormButton type="submit">Register</FormButton>

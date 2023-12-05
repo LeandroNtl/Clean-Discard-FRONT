@@ -46,6 +46,13 @@ const Evaluations = () => {
                 }
             });
             toast.success(response.data.message);
+
+            setFormData((prevState) => ({
+                ...prevState,
+                score: 0,
+                comment: ''
+            }));
+
             setTimeout(() => {
                 window.location.href = '/discard-points';
             }, 3000);

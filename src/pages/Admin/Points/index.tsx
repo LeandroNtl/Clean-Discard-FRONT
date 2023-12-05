@@ -9,7 +9,7 @@ interface FormData {
     description: string;
     latitude: number;
     longitude: number;
-    waste_id: number;
+    waste_id: number[];
 }
 
 const Points = () => {
@@ -19,41 +19,55 @@ const Points = () => {
         description: '',
         latitude: 0,
         longitude: 0,
-        waste_id: 0,
+        waste_id: []
     });
 
     const [mensagem, setMensagem] = useState('')
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
-        const { name, value } = e.target;
+        const { name, value, checked, type } = e.target;
 
-        setFormData((prevState) => ({
-            ...prevState,
-            [name]: value
-        }));
+        if (type === 'checkbox') {
+            setFormData((prevState) => ({
+                ...prevState,
+                [name]: checked
+                ? [...prevState.waste_id || [], Number(value)]
+                : (prevState.waste_id || []).filter((waste) => waste !== Number(value))
+            }));
+
+        } else {
+
+            setFormData((prevState) => ({
+                ...prevState,
+                [name]: value
+            }));
+        
+        }
     }
 
     const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            console.log(formData);
             const response = await api.post('/discard-points', formData);
             toast.success(response.data.message);
             setMensagem("Ponto registrado com sucesso!");
 
             const id = response.data.id;
-            const waste = Number(formData.waste_id)
-           
-            try {
-                const response = await api.post(`/discard-point-wastes`, { discard_point_id: id, waste_id: waste });
-                toast.success(response.data.message);
-                setMensagem("Ponto registrado com sucesso!");
-            } catch (error: any) {
-                toast.error(error.response.data.error);
-                setMensagem("Erro ao registrar ponto!");
+            const wastes = formData.waste_id;
+
+            for (let i = 0; i < wastes.length; i++) {
+                const waste = wastes[i];
+                await api.post(`/discard-point-wastes`, { discard_point_id: id, waste_id: waste });
             }
-            
+
+            setFormData({
+                name: '',
+                description: '',
+                latitude: 0,
+                longitude: 0,
+                waste_id: []
+            });
 
         } catch (error: any) {
             toast.error(error.response.data.error);

@@ -1,5 +1,9 @@
 import { styled } from 'styled-components';
 
+interface FieldProps {
+    $isRadio?: boolean;
+}
+
 const Form = styled.form`
 
     width: 100%;
@@ -15,19 +19,18 @@ const Form = styled.form`
 
 `;
 
-const FormField = styled.div`
+const FormField = styled.div<FieldProps>`
 
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    select {
-
-        width: 50%;
+    
+    input[type="checkbox"] {
+            
         padding: 1rem 0.5rem;
-        margin: 0.5rem 0;
+        margin: 0.5rem;
 
         align-self: flex-start;
 
@@ -37,22 +40,13 @@ const FormField = styled.div`
         font-size: 1.2rem;
         font-weight: 600;
 
-        outline: none;
-
-        &:focus {
-
-            border: 1px solid #000800;
-            
-        }
-
-        option {
-
-            font-size: 1.2rem;
-            font-weight: 600;
-
-        }
-
     }
+
+    ${(props) => props.$isRadio && `
+
+        flex-direction: row;
+
+    `}
     
 `;
 

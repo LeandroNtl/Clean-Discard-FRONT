@@ -3,7 +3,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { GoogleMap, useLoadScript, InfoWindowF, DirectionsRenderer } from '@react-google-maps/api';
-import { TextContainer, EvaluationContainer, WasteIconContainer, WasteIcon, Button, ButtonContainer, WindowContainer } from './styles';
+import { TextContainer, EvaluationContainer, WasteIconContainer, WasteIcon, Button, WindowContainer } from './styles';
 
 import Key from '../../../config';
 import Container from '../Container';
@@ -103,45 +103,41 @@ const GoogleMaps = () => {
                     position={{lat: selectedMarker.latitude, lng: selectedMarker.longitude}}
                     onCloseClick={() => setSelectedMarker(null)}
                 >
-                    <Container $width="250px">
-                        <WindowContainer>
-                            <TextContainer>
+                    <WindowContainer>
+                        <TextContainer>
+                            <Container $width="90%" $gap="0.5rem" $direction="column">
                                 <h2>{selectedMarker.name}</h2>
                                 <p>{selectedMarker.description}</p>
-                            </TextContainer>
-                            <EvaluationContainer>
-                                <h3>{selectedMarker.evaluation}</h3>
-                            </EvaluationContainer>
-                            <Container $width="90%" $height="auto" $gap="0.5rem">
-                                {page.pathname === locations[1].pathname ? (
-                                    <ButtonContainer>
-                                        <Button onClick={() => {
-                                            directionsService.route({
-                                                origin: new google.maps.LatLng(userLocation.coordinates.lat, userLocation.coordinates.lng),
-                                                destination: new google.maps.LatLng(selectedMarker.latitude, selectedMarker.longitude),
-                                                travelMode: google.maps.TravelMode.DRIVING
-                                            }, directionsCallback);
-                                        }}>Ir</Button>
-                                    </ButtonContainer>
-                                ) : null}
-                                <ButtonContainer>
-                                    <Button onClick={() => toggleComments()}>avaliações</Button>
-                                </ButtonContainer>
                             </Container>
-                            {showComments ? (
-                                <Evaluations discard_point_id={selectedMarker.id} />
+                        </TextContainer>
+                        <EvaluationContainer>
+                            <h3>Avaliação Geral: {selectedMarker.evaluation}</h3>
+                        </EvaluationContainer>
+                        <Container $width="100%" $height="auto" $gap="0.5rem" $direction='row'>
+                            {page.pathname === locations[1].pathname ? (
+                                <Button onClick={() => {
+                                    directionsService.route({
+                                        origin: new google.maps.LatLng(userLocation.coordinates.lat, userLocation.coordinates.lng),
+                                        destination: new google.maps.LatLng(selectedMarker.latitude, selectedMarker.longitude),
+                                        travelMode: google.maps.TravelMode.DRIVING
+                                    }, directionsCallback);
+                                }}>Ir</Button>
                             ) : null}
-                            <WasteIconContainer>
-                                {selectedMarker.wastes.length > 0 ? (
-                                    selectedMarker.wastes.map(waste => (
-                                        <Tooltip title={waste.name} placement="top" key={waste.id}>
-                                            <WasteIcon src={`../../src/assets/icons/${waste.name}.png`} />
-                                        </Tooltip>
-                                    ))
-                                ) : <p>Não há tipos registrados de resíduos neste ponto de descarte.</p>}
-                            </WasteIconContainer>
-                        </WindowContainer>  
-                    </Container>
+                            <Button onClick={() => toggleComments()}>avaliações</Button>
+                        </Container>
+                        {showComments ? (
+                            <Evaluations discard_point_id={selectedMarker.id} />
+                        ) : null}
+                        <WasteIconContainer>
+                            {selectedMarker.wastes.length > 0 ? (
+                                selectedMarker.wastes.map(waste => (
+                                    <Tooltip title={waste.name} placement="top" key={waste.id}>
+                                        <WasteIcon src={`../../src/assets/icons/${waste.name}.png`} />
+                                    </Tooltip>
+                                ))
+                            ) : <p>Não há tipos registrados de resíduos neste ponto de descarte.</p>}
+                        </WasteIconContainer>
+                    </WindowContainer>  
                 </InfoWindowF>
             ) : null}
 

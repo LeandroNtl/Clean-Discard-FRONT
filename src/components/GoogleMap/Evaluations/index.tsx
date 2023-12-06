@@ -131,7 +131,7 @@ const Evaluations = ({ discard_point_id }: any) => {
     return (
         <Fragment>
             
-            <Container $width="95%" $height="120px" $direction="column" $justify="flex-start" $align="flex-start" $gap="0.5rem" $padding="0.5rem" $overflowY="auto">
+            <Container $width="100%" $direction="column" $justify="flex-start" $align="center" $gap="0.5rem" $padding="0.5rem" $overflowY="auto">
 
                 <Button onClick={() => setIsClicked(!isClicked)}>Avaliar</Button>
 
@@ -148,13 +148,13 @@ const Evaluations = ({ discard_point_id }: any) => {
                 {evaluations.map(evaluation => {
                     if (evaluation.discard_point_id === discard_point_id) {
                         return (
-                            <Container key={evaluation.id} $width="100%" $height="auto" $direction="column" $justify="flex-start" $align="flex-start" $border="1px solid #000" $radius="0.5rem" $padding="0.5rem" $gap="0.5rem">
-                                <p>{users.map(user => {
+                            <Container key={evaluation.id} $width="100%" $height="auto" $direction="column" $justify="flex-start" $align="flex-start" $border="1px solid #000" $radius="0.5rem" $padding="0.5rem" $gap="0.5rem" $resposive={{ $width: "100%", $direction: "column", $align: "flex-start", $gap: "0.5rem", $padding: "0.5rem", $height: "auto", $border: "1px solid #000", $radius: "0.5rem", $margin: "0.5rem 0" }}>
+                                <p><b>{users.map(user => {
                                     if (user.id === evaluation.user_id) {
                                         return user.name;
                                     }
-                                })}, {evaluation.score}</p>
-                                <p>{evaluation.comment}</p>
+                                })},</b> {evaluation.score} pontos</p>
+                                <p><b>Comentário:</b> {evaluation.comment}</p>
                             </Container>
                         )
                     }

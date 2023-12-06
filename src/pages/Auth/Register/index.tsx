@@ -1,9 +1,9 @@
 import { RegisterForm } from "../../../components/Forms";
 import api from "../../../services/api";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Navigate } from 'react-router-dom';
+import { useNavigate  } from 'react-router-dom';
 
 interface FormData {
     name: string;
@@ -23,6 +23,7 @@ const Register = () => {
 
     const [isRegistered, setIsRegistered] = useState(false);
     const [error, setError] = useState('')
+    const navigate = useNavigate();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
@@ -44,9 +45,17 @@ const Register = () => {
         }
     }
 
-    if (isRegistered) {
-        return <Navigate to="/auth/login" />
-    }
+    useEffect(() => {
+
+        if (isRegistered) {
+            toast.success('Cadastro realizado com sucesso!');
+            setIsRegistered(false);
+            setTimeout(() => {
+                navigate("/auth/login");
+            }, 2000);
+        }
+
+    }, [isRegistered, navigate]);
 
     return (
         <Fragment>

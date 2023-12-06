@@ -45,7 +45,9 @@ const Home = () => {
                         </Link>   
                     </Container>
                     <Container $height="100%" $border="2px solid #008000" $radius="0.5rem" $direction="column" $gap="0.5rem" $padding="0.5rem" $resposive={{ $width: "100%", $height: "auto", $padding: "0.5rem", $border: "2px solid #008000", $radius: "0.5rem" }}>
-                        <h2>Novo Local</h2>
+                        <StyledLink to="/discard-point-register">
+                            Registrar Ponto
+                        </StyledLink>
                     </Container>
                 </Container>
             </Container>

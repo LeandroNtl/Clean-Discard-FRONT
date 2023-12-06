@@ -2,8 +2,10 @@ import { styled } from 'styled-components';
 
 const WindowContainer = styled.div`
         
-    max-width: 250px;
+    max-width: 300px;
     height: 100%;
+
+    margin-right: 0.8rem;
 
     gap: 0.5rem;
 
@@ -80,34 +82,20 @@ const WasteIconContainer = styled.div`
 
 const WasteIcon = styled.img`
 
-    width: 20px;
-    height: 20px;
-
-`;
-
-const ButtonContainer = styled.div`
-    
-    width: 50%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    gap: 0.5rem;
-
-    button {
-        width: 100%;
-    }
+    width: 30px;
+    height: 30px;
 
 `;
 
 const Button = styled.button`
     
-    width: 100%;
+    width: auto;
     height: 30px;
 
     border: 1px solid #008000;
     border-radius: 5px;
+
+    padding: 0.5rem;
 
     text-align: center;
 
@@ -123,4 +111,4 @@ const Button = styled.button`
 
 `;
 
-export { TextContainer, EvaluationContainer, EvaluationStars, WasteIconContainer, WasteIcon, ButtonContainer, Button, WindowContainer };
+export { TextContainer, EvaluationContainer, EvaluationStars, WasteIconContainer, WasteIcon, Button, WindowContainer };

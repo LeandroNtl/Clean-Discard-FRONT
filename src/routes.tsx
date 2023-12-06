@@ -7,10 +7,11 @@ import DiscardPoints from './pages/DiscardPoints';
 import Auth from './pages/Auth';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
-import { Wastes, Admin, Points } from './pages/Admin';
+import { Wastes, Admin } from './pages/Admin';
 import Cookies from 'universal-cookie';
 import tokenValidator from './services/tokenValidator';
 import Evaluations from './pages/Admin/Evaluations';
+import DiscardPointRegister from './pages/DiscardPointRegister';
 
 const cookies = new Cookies();
 
@@ -88,8 +89,12 @@ const BrowserRouter = createBrowserRouter([
                 element: <ProtectedRoute><Wastes /></ProtectedRoute>
             },
             {
-                path: '/admin/discard-points',
-                element: <Points />
+                path: '/discard-point-register',
+                element: (
+                    <ProtectedRoute>
+                        <DiscardPointRegister />
+                    </ProtectedRoute>
+                )
             },
             {
                 path: '/admin/evaluations',

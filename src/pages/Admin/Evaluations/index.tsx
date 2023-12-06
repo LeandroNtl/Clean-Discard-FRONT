@@ -27,40 +27,6 @@ const Evaluations = () => {
     const [cookies] = useCookies(['token', 'point']);
     const [user_id, setUser_id] = useState(0);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-
-        const { name, value } = e.target;
-
-        setFormData((prevState) => ({
-            ...prevState,
-            [name]: value
-        }));
-    }
-
-    const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        try {
-            const response = await api.post('/evaluations', formData, {
-                headers: {
-                    Authorization: `Bearer ${cookies.token}`
-                }
-            });
-            toast.success(response.data.message);
-
-            setFormData((prevState) => ({
-                ...prevState,
-                score: 0,
-                comment: ''
-            }));
-
-            setTimeout(() => {
-                window.location.href = '/discard-points';
-            }, 3000);
-        } catch (error: any) {
-            toast.error(error.response.data.error);
-        }
-    }
-
     useEffect(() => {
 
         const verifyToken = async () => {
@@ -93,6 +59,38 @@ const Evaluations = () => {
         }));
 
     }, []);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+
+        const { name, value } = e.target;
+
+        setFormData((prevState) => ({
+            ...prevState,
+            [name]: value
+        }));
+    }
+
+    const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        try {
+            const response = await api.post('/evaluations', formData, {
+                headers: {
+                    Authorization: `Bearer ${cookies.token}`
+                }
+            });
+
+            toast.success(response.data.message);
+
+            setFormData((prevState) => ({
+                ...prevState,
+                score: 0,
+                comment: ''
+            }));
+
+        } catch (error: any) {
+            toast.error(error.response.data.error);
+        }
+    }
 
     return (
         <Fragment>

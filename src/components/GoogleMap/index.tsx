@@ -112,7 +112,7 @@ const GoogleMaps = () => {
                             <EvaluationContainer>
                                 <h3>{selectedMarker.evaluation}</h3>
                             </EvaluationContainer>
-                            <Container $width="100%" $height="auto" $gap="0.5rem">
+                            <Container $width="90%" $height="auto" $gap="0.5rem">
                                 {page.pathname === locations[1].pathname ? (
                                     <ButtonContainer>
                                         <Button onClick={() => {
@@ -125,7 +125,7 @@ const GoogleMaps = () => {
                                     </ButtonContainer>
                                 ) : null}
                                 <ButtonContainer>
-                                    <Button onClick={() => toggleComments()}>{showComments ? 'Esconder' : 'Ver'} comentários</Button>
+                                    <Button onClick={() => toggleComments()}>avaliações</Button>
                                 </ButtonContainer>
                             </Container>
                             {showComments ? (

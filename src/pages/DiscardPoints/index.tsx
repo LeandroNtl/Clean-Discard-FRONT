@@ -1,6 +1,8 @@
 import Container from "../../components/Container";
 import GoogleMaps from "../../components/GoogleMap";
 import Points from "../../components/GoogleMap/Points";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { useEffect, useState } from "react";
 
@@ -52,6 +54,7 @@ const DiscardPoints = () => {
     return (
 
         <Container $width="100%" $height="100%" $justify="space-between" $padding="0.5rem" $resposive={{ $direction: "column", $padding: "0.5rem", $gap: "0.5rem", $justify: "space-between", $width: "100vw" }}>
+            <ToastContainer />
             <Container $width="74%" $height="100%" $border="2px solid #008000" $resposive={{ $width: "100%", $height: "60vh", $padding: "0.5rem", $border: "2px solid #008000" }}>
                 <GoogleMaps />
             </Container>

@@ -65,7 +65,9 @@ const Points = ({ userLocation }: MarksProps) => {
                 }
             });
 
-            mapMarkers.push(mapMarker);
+            if (mapMarker.status === 'ativo') {
+                mapMarkers.push(mapMarker);
+            }
 
         });
 
@@ -86,11 +88,11 @@ const Points = ({ userLocation }: MarksProps) => {
     return (
         <>
             {mapMarkers.map(mapMarker => (
-                <Container key={mapMarker.id} $width="100%" $border="2px solid #008000" $padding="0.5rem" $direction="column" $justify="space-between" $align="center" $radius="0.5rem" $margin="0.5rem" $resposive={{ $width: "100%", $padding:"0.5rem", $height: "100%", $border:"2px solid #008000",  $radius:"0.5rem" }}>
+                <Container key={mapMarker.id} $width="100%" $border="2px solid #008000" $padding="0.5rem" $direction="column" $justify="space-between" $align="center" $radius="0.5rem" $margin="0.5rem" $gap="0.2rem" $resposive={{ $width: "100%", $padding:"0.5rem", $height: "100%", $border:"2px solid #008000",  $radius:"0.5rem" }}>
                     <h2>{mapMarker.name}</h2>
-                    <p>{mapMarker.description}</p>
-                    <h3>{mapMarker.evaluation}</h3>
-                    <Container $width="100%" $direction="row" $justify="center" $align="center" $wrap="wrap" $resposive={{ $direction: "row", $justify: "center", $align: "center", $wrap: "wrap" }}>
+                    <p style={{ textAlign: "justify" }}>{mapMarker.description}</p>
+                    <h3>Avaliação Geral: {mapMarker.evaluation}</h3>
+                    <Container $width="100%" $direction="row" $justify="center" $align="center" $padding="0.5rem" $wrap="wrap" $resposive={{ $direction: "row", $justify: "center", $align: "center", $wrap: "wrap" }}>
                         {mapMarker.wastes.map(waste => (
                             <Container key={waste.id} $border="1px solid #008000" $padding="0.5rem" $direction="column" $justify="space-between" $align="center" $radius="0.5rem" $width='auto' $margin="0.2rem" $resposive={{ $width: "auto", $padding: "0.5rem", $margin: "0.2rem", $border:"1px solid #008000", $radius:"0.5rem" }}>
                                 <Container $width="auto" $height="100%" $direction="column" $justify="center" $align="center">

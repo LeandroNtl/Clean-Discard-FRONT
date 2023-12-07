@@ -8,7 +8,7 @@ const Chat = () => {
             apiHost="https://leandrontl-chatbot.hf.space"
             theme={{
                 button: {
-                    backgroundColor: "#008000",
+                    backgroundColor: "#93f294",
                     right: 20,
                     bottom: 20,
                     size: "medium",
@@ -29,7 +29,7 @@ const Chat = () => {
                         avatarSrc: icon,
                     },
                     userMessage: {
-                        backgroundColor: "#008000",
+                        backgroundColor: "#93f294",
                         textColor: "#ffffff",
                         showAvatar: true,
                         avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png",
@@ -38,7 +38,7 @@ const Chat = () => {
                         placeholder: "Digite sua mensagem aqui...",
                         backgroundColor: "#ffffff",
                         textColor: "#303235",
-                        sendButtonColor: "#008000",
+                        sendButtonColor: "#93f294",
                     }
                 }
             }}

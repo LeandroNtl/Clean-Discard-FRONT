@@ -30,10 +30,6 @@ const StyledContainer = styled.div<ContainerProps>`
 
     flex-shrink: 0;
 
-    background-image: ${props => props.$bgImage || 'none'};
-    background-size: ${props => props.$bgSize || 'cover'};
-    background-position: center;
-
     &::-webkit-scrollbar {
         display: ${props => props.$scrollbar || 'none'};
     }

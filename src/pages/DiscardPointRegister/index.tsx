@@ -106,6 +106,7 @@ const DiscardPointRegister = () => {
         e.preventDefault();
         try {
             const response = await api.post('/discard-points', formData);
+            
             toast.success(response.data.message);
             setMensagem("Ponto registrado com sucesso!");
 

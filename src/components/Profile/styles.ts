@@ -7,7 +7,7 @@ interface ProfileDropdownProps {
 
 const ProfileContainer = styled.div`
 
-    width: 5rem;
+    width: 10rem;
     height: 100%;
 
     display: flex;
@@ -22,7 +22,7 @@ const ProfileContainer = styled.div`
 
 const ProfileBox = styled.div`
 
-    width: 100%;
+    width: 35%;
     height: 100%;
 
     border-radius: 50%;

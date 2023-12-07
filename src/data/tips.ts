@@ -1,5 +1,5 @@
 
-const image = 'https://prefonline-savein.cdn.jelastic.net/wp-content/uploads/sites/20/2019/06/Descarte-de-Pilhas.jpg';
+const image = 'https://idec.org.br/sites/default/files/dicasedireitos/pilha-descarte-ecologico.jpg';
 
 const tips = [
     {

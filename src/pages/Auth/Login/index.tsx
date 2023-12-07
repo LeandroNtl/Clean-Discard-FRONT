@@ -1,6 +1,6 @@
 import { LoginForm } from '../../../components/Forms';
 import api from '../../../services/api';
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
@@ -34,19 +34,21 @@ const Login = () => {
         try {
             const response = await api.post('/auth/login', formData);
             setCookie('token', response.data.token, { path: '/' });
-         
-            if (cookies.token) {
-                toast.success('Login realizado com sucesso!');
-                setTimeout(() => {
-                    navigate('/');
-                }, 1000);
-            }
 
         } catch (error: any) {
             toast.error(error.response.data.error);
             setMensagem("Erro ao realizar login!");
         }
     }
+
+    useEffect(() => {
+        if (cookies.token) {
+            toast.success('Login realizado com sucesso!');
+            setTimeout(() => {
+                navigate('/');
+            }, 1000);
+        }
+    }, [cookies.token, navigate]);
 
     return (
         <Fragment>

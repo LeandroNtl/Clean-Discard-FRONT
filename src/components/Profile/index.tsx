@@ -2,6 +2,7 @@ import { ProfileContainer, ProfileBox, ProfileDropdown, ProfileDropdownItem, Pro
 import { useState, useEffect } from 'react';
 import { AccountCircle, Login, Logout } from '@mui/icons-material';
 import { useCookies } from 'react-cookie';
+import tokenValidator from '../../services/tokenValidator';
 
 const links = [
     {
@@ -27,31 +28,44 @@ const links = [
 const Profile = () => {
 
     const [cookies, setCookie, removeCookie] = useCookies(['token']);
+    const [username, setUsername] = useState('');
 
     const handleLogout = () => {
-        setCookie('token', '', { path: '/' }); // apenas para remover o alerta de variável não utilizada
-        removeCookie('token', { path: '/' });
+        setCookie('token', '', { path: '/' });
     }
 
     useEffect(() => {
+
+        const verifyToken = async () => {
+            if (cookies.token) {
+                const token = cookies.token;
+                const isValid = await tokenValidator(token);
+                if (!isValid) {
+                    removeCookie('token', { path: '/' });
+                }
+
+                setUsername(isValid.name);
+
+            }
+        }
         
-        if (cookies.token) {
-            links.pop();
-            links.push({
-                name: 'logout',
-                path: '/',
-                icon: <Logout />
-            });
-        } else {
-            links.pop();
-            links.push({
+        verifyToken();
+
+        if (!cookies.token) {
+            links[3] = {
                 name: 'login',
                 path: '/auth/login',
                 icon: <Login />
-            });
+            }
+        } else {
+            links[3] = {
+                name: 'logout',
+                path: '/auth/login',
+                icon: <Logout />
+            }
         }
 
-    }, [cookies.token]);
+    }, [cookies.token, removeCookie]);
 
     const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
@@ -61,6 +75,7 @@ const Profile = () => {
 
     return (
         <ProfileContainer>
+            <h4>{username ? 'Olá, ' + username : 'Faça login'}</h4>
             <ProfileBox onClick={toggleProfileDropdown}>
                 <AccountCircle sx={{ fontSize: 40 }} />
                 <ProfileDropdown $isOpen={isProfileDropdownOpen}>

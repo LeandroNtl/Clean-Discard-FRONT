@@ -3,8 +3,11 @@ import { PointsForm } from "../../components/Forms";
 
 import 'react-toastify/dist/ReactToastify.css';
 // import { useNavigate  } from 'react-router-dom';
-import { Fragment, useState, useEffect } from 'react';
+import Key from "../../../config";
+import { useState, useEffect } from 'react';
+import Container from "../../components/Container";
 import { toast, ToastContainer } from 'react-toastify';
+import { GoogleMap, useLoadScript } from '@react-google-maps/api';
 
 interface FormData {
     name: string;
@@ -23,6 +26,12 @@ interface UserLocation {
 }
 
 const DiscardPointRegister = () => {
+
+    const {isLoaded, loadError} = useLoadScript({
+
+        googleMapsApiKey: Key,
+    
+    });
 
     const [userLocation, setUserLocation] = useState<UserLocation>({
         loaded: false,
@@ -64,12 +73,6 @@ const DiscardPointRegister = () => {
             setError("Geolocation is not supported by your browser");
         }
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
-
-        setFormData((prevState) => ({
-            ...prevState,
-            latitude: userLocation.coordinates.lat,
-            longitude: userLocation.coordinates.lng
-        }));    
 
     }, [userLocation]);
 
@@ -128,11 +131,31 @@ const DiscardPointRegister = () => {
         }
     }
 
+    if (loadError) return <div>Map cannot be loaded right now, sorry.</div>;
+    if (!isLoaded) return <div>Loading...</div>;
+
+    const clickHandler = (e: any) => {
+        setFormData((prevState) => ({
+            ...prevState,
+            latitude: e.latLng.lat(),
+            longitude: e.latLng.lng()
+        }));
+    }
+
     return (
-        <Fragment>
+        <Container $width="80vw" $height="80vh" $align="center" $justify="center" $padding="0.5rem" $resposive={{ $direction: "column", $padding: "0.5rem", $gap: "0.5rem", $justify: "center", $width: "100vw" }}>
+
             <ToastContainer />
-            <PointsForm $onSubmit={handleRegister} $fields={{ ...formData, handleChange }} $children={mensagem ? mensagem : ''} />
-        </Fragment>  
+
+            <Container $width="60%" $height="100%" $justify="space-between" $padding="0.5rem" $resposive={{ $direction: "column", $padding: "0.5rem", $gap: "0.5rem", $justify: "space-between", $width: "100vw", $height:"30vh" }}>
+                <GoogleMap mapContainerStyle={{height: '100%', width: '100%'}} center={{ lat: userLocation.coordinates.lat, lng: userLocation.coordinates.lng }} zoom={15} onClick={clickHandler} />
+            </Container>
+
+            <Container $width="40%" $height="100%" $direction="column" $padding="3rem" $justify="flex-start" $align="center" $overflowY='auto' $radius="0.5rem" $shadow="0 0.5rem 1rem #008000" $resposive={{ $width: "100vw", $direction: "row", $overflowX: "auto", $overflowY: "none", $padding: "0.5rem", $gap: "0.5rem", $justify: "flex-start", $align: "center" }}>
+                <PointsForm $onSubmit={handleRegister} $fields={{ ...formData, handleChange }} $children={mensagem ? mensagem : ''} />
+            </Container>
+
+        </Container> 
     );
 
 };

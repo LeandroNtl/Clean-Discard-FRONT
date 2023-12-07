@@ -1,8 +1,7 @@
 import { Waste, DiscardPoint, DiscardPointWaste, MapMarker } from '../types';
+import { MarkerF } from '@react-google-maps/api';
 import { useEffect, useState } from 'react';
 import { useCookies } from "react-cookie";
-
-import { MarkerF } from '@react-google-maps/api';
 import api from '../../../services/api';
 
 interface MarksProps {

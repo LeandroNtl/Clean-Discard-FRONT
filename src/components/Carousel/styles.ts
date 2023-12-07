@@ -9,6 +9,8 @@ const CarouselContainer = styled.div`
     align-items: center;
     justify-content: center;
 
+    padding: 0.5rem;
+
 `;
 
 const CarouselTitle = styled.h1`

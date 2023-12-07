@@ -81,7 +81,7 @@ const FormButton = styled.button`
 
     width: 50%;
     padding: 1rem 0.5rem;
-    margin: 0.5rem 0;
+    margin: 1rem 0;
 
     border: 1px solid #000000;
     border-radius: 0.5rem;

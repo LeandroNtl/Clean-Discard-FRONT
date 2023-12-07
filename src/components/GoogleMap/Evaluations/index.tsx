@@ -1,12 +1,13 @@
-import { useEffect, useState, Fragment } from 'react';
+import { toast } from 'react-toastify';
 import api from '../../../services/api';
 import Container from '../../Container';
 import { useCookies } from "react-cookie";
-import { toast } from 'react-toastify';
+
+import { Button } from '../styles';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect, useState, Fragment } from 'react';
 import { EvaluationForm } from "../../../components/Forms";
 import tokenValidator from "../../../services/tokenValidator";
-import { Button } from '../styles';
 
 interface FormData {
 

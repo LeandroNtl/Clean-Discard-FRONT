@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useEffect, useState } from "react";
+import Chat from "../../components/Chat";
 
 interface UserLocation {
     loaded: boolean;
@@ -55,6 +56,7 @@ const DiscardPoints = () => {
 
         <Container $width="100%" $height="100%" $justify="space-between" $padding="0.5rem" $resposive={{ $direction: "column", $padding: "0.5rem", $gap: "0.5rem", $justify: "space-between", $width: "100vw" }}>
             <ToastContainer />
+            <Chat />
             <Container $width="74%" $height="100%" $border="2px solid #008000" $resposive={{ $width: "100%", $height: "60vh", $padding: "0.5rem", $border: "2px solid #008000" }}>
                 <GoogleMaps />
             </Container>

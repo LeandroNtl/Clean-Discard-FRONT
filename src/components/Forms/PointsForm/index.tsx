@@ -50,16 +50,6 @@ const PointsForm = (props: PointsFormProps) => {
                 <FormLabel htmlFor="longitude">Longitude</FormLabel>
                 <FormInput type="number" id="longitude" name="longitude" placeholder="Digite a longitude do ponto" autoComplete="on" value={props.$fields?.longitude} onChange={props.$fields?.handleChange} required />
             </FormField>
-            {/* <FormField>
-                <FormLabel htmlFor="wastes">Wastes</FormLabel>
-                <select name="waste_id" id="wastes" value={props.$fields?.waste_id} onChange={props.$fields?.handleChange} required>
-                    <option value="">Selecione um resíduo</option>
-                    {wastes.map(waste => (
-                        <option key={waste.id} value={waste.id}>{waste.name}</option>
-                    ))}
-                </select>
-            </FormField> */}
-            {/* check box  para selecionar os resíduos */}
             <FormField>
                 <FormLabel htmlFor="wastes">Wastes</FormLabel>
                 <Container $align='flex-start' $justify='flex-start' $wrap='wrap' $gap='0.5rem' $width='100%' $height='100%' $padding='0.5rem' $border='1px solid #ccc' $radius='0.5rem'>

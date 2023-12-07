@@ -1,5 +1,5 @@
 
-const image = 'https://static.portaldaindustria.com.br/media/filer_public/c1/39/c1398bc8-b1ee-4dba-a660-dd5d9f4a5f22/sustentabilidade.jpg';
+const image = 'https://prefonline-savein.cdn.jelastic.net/wp-content/uploads/sites/20/2019/06/Descarte-de-Pilhas.jpg';
 
 const tips = [
     {

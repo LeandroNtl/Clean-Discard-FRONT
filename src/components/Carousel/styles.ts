@@ -25,7 +25,7 @@ const CarouselTitle = styled.h1`
 const CarouselDescription = styled.p`
 
     font-size: 1.2rem;
-    font-weight: 400;
+    font-weight: 500;
     text-align: justify;
 
     padding: 1rem;

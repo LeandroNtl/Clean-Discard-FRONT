@@ -20,6 +20,8 @@ interface ContainerProps {
     $textAlign?: string;
     $margin?: string;
     $wrap?: string;
+    $bgImage?: string;
+    $bgSize?: string;
 
     $resposive?: {
         $width?: string;

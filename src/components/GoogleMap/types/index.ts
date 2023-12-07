@@ -11,7 +11,7 @@ export interface DiscardPoint {
 
     id: number,
     name: string,
-    status: number,
+    status: string,
     description: string,
     latitude: number,
     longitude: number,
@@ -31,7 +31,7 @@ export interface MapMarker {
     
     id: number,
     name: string,
-    status: number,
+    status: string,
     description: string,
     latitude: number,
     longitude: number,

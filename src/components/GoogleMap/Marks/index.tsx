@@ -38,6 +38,7 @@ const Marks = ({ setSelectedMarker }: MarksProps) => {
         const mapMarkers: MapMarker[] = [];
 
         discardPoints.forEach(discardPoint => {
+
             const mapMarker: MapMarker = {
                 id: discardPoint.id,
                 name: discardPoint.name,
@@ -59,7 +60,9 @@ const Marks = ({ setSelectedMarker }: MarksProps) => {
                 }
             });
 
-            mapMarkers.push(mapMarker);
+            if (discardPoint.status === 'ativo') {
+                mapMarkers.push(mapMarker);
+            }
 
         });
 

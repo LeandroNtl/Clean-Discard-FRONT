@@ -51,7 +51,7 @@ const Home = () => {
                     </Container>
                 </Container>
             </Container>
-            <Container $width="100%" $height="20rem" $border="2px solid #008000" $radius="0.5rem" $padding="0.5rem" $resposive={{ $display: "none" }}>
+            <Container $width="100%" $height="auto" $border="2px solid #008000" $radius="0.5rem" $padding="0.5rem" $resposive={{ $display: "none" }}>
                 <TipCarousel />
             </Container>
             <Container $width="100%" $height="60px"></Container>

@@ -10,8 +10,9 @@ import Register from './pages/Auth/Register';
 import { Wastes, Admin } from './pages/Admin';
 import Cookies from 'universal-cookie';
 import tokenValidator from './services/tokenValidator';
-import Evaluations from './pages/Admin/Evaluations';
+// import Evaluations from './pages/Admin/Evaluations';
 import DiscardPointRegister from './pages/DiscardPointRegister';
+import Solicitations from './pages/Admin/Solicitations';
 
 const cookies = new Cookies();
 
@@ -97,8 +98,12 @@ const BrowserRouter = createBrowserRouter([
                 )
             },
             {
-                path: '/admin/evaluations',
-                element: <ProtectedRoute><Evaluations /></ProtectedRoute>
+                path: '/admin/solicitations',
+                element: (
+                    <ProtectedRoute>
+                        <Solicitations />
+                    </ProtectedRoute>
+                )
             },
             {
                 path: '*',

@@ -43,6 +43,7 @@ const ProtectedRoute = (props : ProtectedRouteProps) => {
                     navigate('/auth/login');
                     return;
                 }
+                
             } catch (error) {
                 navigate('/auth/login');
                 return;

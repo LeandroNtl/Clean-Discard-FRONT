@@ -28,7 +28,7 @@ const Home = () => {
 
         <Container $width="100%" $height="100%" $padding="0.5rem" $gap="0.5rem" $direction="column" $align="center" $justify="center" $resposive={{ $width: "100vw", $padding: "0.5rem", $gap: "0.5rem", $direction: "column", $align: "center", $justify: "center", $height:"90vh" }}>
             <ToastContainer />
-            <Container $width="100%" $height="35rem" $gap="0.5rem" $padding="0.5rem" $resposive={{ $width: "100vw", $padding: "0.5rem", $gap: "0.5rem" }}>
+            <Container $width="100%" $height="35rem" $gap="0.5rem"  $resposive={{ $width: "100vw", $padding: "0.5rem", $gap: "0.5rem" }}>
                 <Container $height="100%" $border="2px solid #008000" $radius="0.5rem" $direction="column" $gap="0.5rem" $padding="0.5rem" $resposive={{ $height:"80%", $width: "100%", $padding: "0.5rem", $border: "2px solid #008000", $radius: "0.5rem" }}>
                     <Container $width='100%' $align='center' $justify='flex-start' $resposive={{ $height:"10%", $width: "100%", $align: "center" }}>
                         <StyledLink to="/discard-points">
@@ -40,7 +40,7 @@ const Home = () => {
                     </Container>
                 </Container>
                 <Container $height="100%" $padding="0.3rem" $gap="0.5rem" $direction="column" $resposive={{ $width: "100%", $gap: "0.5rem" }}>
-                    <Container $width="100%" $height="50%" $border="2px solid #008000" $radius="0.5rem" $direction="column" $gap="0.5rem" $padding="1rem" $align="flex-start" $resposive={{ $width: "100%", $height: "auto", $padding: "0.5rem", $border: "2px solid #008000", $radius: "0.5rem" }}>
+                    <Container $width="100%" $height="50%" $border="2px solid #008000" $radius="0.5rem" $direction="column" $gap="0.5rem" $padding="0.5rem" $align="flex-start" $resposive={{ $width: "100%", $height: "auto", $padding: "0.5rem", $border: "2px solid #008000", $radius: "0.5rem" }}>
                         <p>Descarte pilhas, baterias e outros resíduos de forma correta!</p>
                         <h1 style={{ color: "#008000" }}>CleanDiscard <span style={{ color: "#008000" }}>...</span></h1>
                         <p style={{ width: "80%", textAlign: "justify" }}>Seja bem-vindo ao CleanDiscard, um site que tem como objetivo ajudar as pessoas a descartarem seus resíduos de forma correta, evitando assim a contaminação do solo e da água. <StyledLink to="/about">Saiba mais</StyledLink></p>

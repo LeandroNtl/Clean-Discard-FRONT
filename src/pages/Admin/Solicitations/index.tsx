@@ -2,6 +2,15 @@ import api from '../../../services/api';
 import { useState, useEffect, Fragment } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import tokenValidator from "../../../services/tokenValidator";
+import { useCookies } from "react-cookie";
+import { useNavigate } from 'react-router-dom';
+import Table from '../../../components/Tables/styles';
+import Container from '../../../components/Container';
+import { Button } from '../../../components/GoogleMap/styles';
+
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 interface DiscardPoint {
     id: number;
@@ -16,8 +25,9 @@ interface DiscardPoint {
 const Solicitations = () => {
 
     const [discardPoints, setDiscardPoints] = useState<DiscardPoint[]>([]);
-
+    const [cookies] = useCookies(['token']);
     const [mensagem, setMensagem] = useState('')
+    const navigate = useNavigate();
 
     const handleAccept = async (id: number) => {
         try {
@@ -43,15 +53,46 @@ const Solicitations = () => {
         api.get('/discard-points').then(response => {
             setDiscardPoints(response.data);
         })
-    }, [mensagem]);
+
+        const verifyToken = async () => {
+                
+            try {
+                const token = cookies.token;
+                
+                if (!token) {
+                    return;
+                }
+
+                const isValid = await tokenValidator(token);
+
+                if (!isValid.valid) {
+                    alert("Você não está logado!");
+                    navigate('auth/login');
+                }
+
+                const isAdmin = isValid.role
+
+                if (isAdmin !== 1) {
+                    alert("Você não tem permissão para acessar esta página!");
+                    navigate('/');
+                }
+                
+            } catch (error) {
+                return;
+            }
+        }
+
+        verifyToken();
+
+    }, [mensagem, cookies]);
 
     return (
         <Fragment>
-            <div className="container">
+            <Container $width="100%" $padding="1rem" $direction="column" $justify="center" $align="center">
                 <h1>Solicitações</h1>
-                <div className="row">
-                    <div className="col-md-12">
-                        <table className="table table-striped">
+                <div>
+                    <div>
+                        <Table>
                             <thead>
                                 <tr>
                                     <th>Nome</th>
@@ -73,18 +114,18 @@ const Solicitations = () => {
                                             <td>{discardPoint.longitude}</td>
                                             <td>{discardPoint.evaluation}</td>
                                             <td>{discardPoint.status}</td>
-                                            <td>
-                                                <button onClick={() => handleAccept(discardPoint.id)} className="btn btn-success">Aceitar</button>
-                                                <button onClick={() => handleReject(discardPoint.id)} className="btn btn-danger">Rejeitar</button>
+                                            <td style={{ display: 'flex', justifyContent: 'space-around', gap: '1rem' }}>
+                                                <Button onClick={() => handleAccept(discardPoint.id)} className="btn btn-success">Aceitar</Button>
+                                                <Button onClick={() => handleReject(discardPoint.id)} className="btn btn-danger">Rejeitar</Button>
                                             </td>
                                         </tr>
                                     ))
                                 }
                             </tbody>
-                        </table>
+                        </Table>
                     </div>
                 </div>
-            </div>
+            </Container>
             <ToastContainer />
         </Fragment>
     );

@@ -2,9 +2,8 @@ import api from "../../services/api";
 import { PointsForm } from "../../components/Forms";
 
 import 'react-toastify/dist/ReactToastify.css';
-// import { useNavigate  } from 'react-router-dom';
 import Key from "../../../config";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Container from "../../components/Container";
 import { toast, ToastContainer } from 'react-toastify';
 import { GoogleMap, useLoadScript } from '@react-google-maps/api';
@@ -49,10 +48,10 @@ const DiscardPointRegister = () => {
         waste_id: []
     });
 
+    const center = useMemo(() => ({ lat: userLocation.coordinates.lat, lng: userLocation.coordinates.lng }), [userLocation.coordinates.lat, userLocation.coordinates.lng]);
+
     const [mensagem, setMensagem] = useState('')
     const [error, setError] = useState<string | null>(null);
-
-    // const navigate = useNavigate();
 
     const onSuccess = (location: any) => {
         setUserLocation({
@@ -69,10 +68,14 @@ const DiscardPointRegister = () => {
     }
 
     useEffect(() => {
+
         if (!("geolocation" in navigator)) {
             setError("Geolocation is not supported by your browser");
         }
+        
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+
 
     }, [userLocation]);
 
@@ -110,7 +113,7 @@ const DiscardPointRegister = () => {
             toast.success(response.data.message);
             setMensagem("Ponto registrado com sucesso!");
 
-            const id = response.data.id;
+            const id = response.data.discardPoint.id;
             const wastes = formData.waste_id;
 
             for (let i = 0; i < wastes.length; i++) {
@@ -144,15 +147,15 @@ const DiscardPointRegister = () => {
     }
 
     return (
-        <Container $width="80vw" $height="80vh" $align="center" $justify="center" $padding="0.5rem" $resposive={{ $direction: "column", $padding: "0.5rem", $gap: "0.5rem", $justify: "center", $width: "100vw" }}>
+        <Container $width="80vw" $height="80vh" $align="center" $justify="center" $padding="0.5rem" $gap="0.5rem" $resposive={{ $direction: "column", $padding: "0.5rem", $gap: "0.5rem", $justify: "center", $width: "100vw" }}>
 
             <ToastContainer />
 
-            <Container $width="60%" $height="100%" $justify="space-between" $padding="0.5rem" $resposive={{ $direction: "column", $padding: "0.5rem", $gap: "0.5rem", $justify: "space-between", $width: "100vw", $height:"30vh" }}>
-                <GoogleMap mapContainerStyle={{height: '100%', width: '100%'}} center={{ lat: userLocation.coordinates.lat, lng: userLocation.coordinates.lng }} zoom={15} onClick={clickHandler} />
+            <Container $width="60%" $height="100%" $justify="space-between" $border="2px solid #008000" $radius="0.5rem" $padding="0.5rem" $resposive={{ $direction: "column", $padding: "0.5rem", $gap: "0.5rem", $width: "100vw", $height:"30vh" }}>
+                <GoogleMap mapContainerStyle={{height: '100%', width: '100%'}} center={center} zoom={15} onClick={clickHandler} />
             </Container>
 
-            <Container $width="40%" $height="100%" $direction="column" $padding="3rem" $justify="flex-start" $align="center" $overflowY='auto' $radius="0.5rem" $shadow="0 0.5rem 1rem #008000" $resposive={{ $width: "100vw", $direction: "row", $overflowX: "auto", $overflowY: "none", $padding: "0.5rem", $gap: "0.5rem", $justify: "flex-start", $align: "center" }}>
+            <Container $width="40%" $height="100%" $direction="column" $padding="4rem" $justify="flex-start" $align="center" $overflowY='auto' $radius="0.5rem" $border="2px solid #008000" $resposive={{ $width: "90vw", $direction: "row", $overflowX: "auto", $overflowY: "none", $padding: "0.5rem", $gap: "0.5rem", $justify: "flex-start", $align: "center", $border: "2px solid #008000" }}>
                 <PointsForm $onSubmit={handleRegister} $fields={{ ...formData, handleChange }} $children={mensagem ? mensagem : ''} />
             </Container>
 

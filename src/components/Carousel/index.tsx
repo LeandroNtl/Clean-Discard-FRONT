@@ -9,7 +9,7 @@ class TipCarousel extends Component {
     render() {
         return (
         
-            <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false} showArrows={false} showIndicators={false} interval={5000} transitionTime={500} width={'100%'} emulateTouch={true} swipeable={true} stopOnHover={false}>
+            <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false} showArrows={false} showIndicators={false} interval={5000} transitionTime={500} width={'80vw'} emulateTouch={true} swipeable={true} stopOnHover={false}>
                 {tips.map((tip, index) => (
                     <CarouselContainer key={index}>
                         <Container $width="70%" $height="100%" $direction="column" $align="center" $justify="center">
@@ -17,7 +17,7 @@ class TipCarousel extends Component {
                             <CarouselDescription>{tip.description}</CarouselDescription>
                         </Container>
                         <Container $width="30%" $height="100%" $direction="column" $align="center" $justify="center">
-                            <img src={tip.image} alt={tip.title} />
+                            <img src={tip.image} alt={tip.title} style={{ borderRadius: "0.5rem" }} />
                         </Container>
                     </CarouselContainer>
                 ))}

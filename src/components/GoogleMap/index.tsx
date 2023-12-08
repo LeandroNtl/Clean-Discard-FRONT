@@ -132,7 +132,10 @@ const GoogleMaps = () => {
                             {selectedMarker.wastes.length > 0 ? (
                                 selectedMarker.wastes.map(waste => (
                                     <Tooltip title={waste.name} placement="top" key={waste.id}>
-                                        <WasteIcon src={`../../src/assets/icons/${waste.name}.png`} />
+                                        <div>
+                                            <WasteIcon src={`../../src/assets/icons/${waste.name}.png`} />
+                                            {window.innerWidth < 768 ? <p>{waste.name}</p> : null}
+                                        </div>
                                     </Tooltip>
                                 ))
                             ) : <p>Não há tipos registrados de resíduos neste ponto de descarte.</p>}

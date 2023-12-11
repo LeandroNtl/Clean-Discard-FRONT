@@ -10,7 +10,7 @@ import GoogleMaps from '../../components/GoogleMap';
 import { styled } from 'styled-components';
 import { AppRegistrationRounded } from '@mui/icons-material';
 
-const StyledLink = styled(Link)`
+export const StyledLink = styled(Link)`
   
     color: #008000;
     font-size: 0.9rem;

@@ -3,19 +3,12 @@ import { useState, useEffect } from 'react';
 import { AccountCircle, Login, Logout } from '@mui/icons-material';
 import { useCookies } from 'react-cookie';
 import tokenValidator from '../../services/tokenValidator';
+import { StyledLink } from '../../pages/Home';
 
 const links = [
     {
-        name: 'Profile',
+        name: 'Perfil',
         path: '/profile'
-    },
-    {
-        name: 'Help',
-        path: '/help'
-    },
-    {
-        name: 'Settings',
-        path: '/settings'
     },
     {
         name: 'login',
@@ -29,11 +22,12 @@ const Profile = () => {
 
     const [cookies, setCookie, removeCookie] = useCookies(['token']);
     const [username, setUsername] = useState('');
+    const [role, setRole] = useState(0);
 
     const handleLogout = () => {
         setCookie('token', '', { path: '/' });
     }
-
+    
     useEffect(() => {
 
         const verifyToken = async () => {
@@ -45,6 +39,7 @@ const Profile = () => {
                 }
 
                 setUsername(isValid.name);
+                setRole(isValid.role);
 
             }
         }
@@ -52,13 +47,13 @@ const Profile = () => {
         verifyToken();
 
         if (!cookies.token) {
-            links[3] = {
+            links[1] = {
                 name: 'login',
                 path: '/auth/login',
                 icon: <Login />
             }
         } else {
-            links[3] = {
+            links[1] = {
                 name: 'logout',
                 path: '/auth/login',
                 icon: <Logout />
@@ -73,9 +68,21 @@ const Profile = () => {
         setIsProfileDropdownOpen(!isProfileDropdownOpen);
     };
 
+    if (role == 1) {
+        links[0] = {
+            name: 'Admin',
+            path: '/admin/solicitations'
+        }
+    } else {
+        links[0] = {
+            name: 'Perfil',
+            path: '/profile'
+        }
+    }
+
     return (
         <ProfileContainer>
-            <h4>{username ? 'Olá, ' + username : 'Faça login'}</h4>
+            <h4 style={{ color: '#008000'}}>{username ? 'Olá, ' + username : <StyledLink to="/auth/login">Faça login</StyledLink>}</h4>
             <ProfileBox onClick={toggleProfileDropdown}>
                 <AccountCircle sx={{ fontSize: 40 }} />
                 <ProfileDropdown $isOpen={isProfileDropdownOpen}>

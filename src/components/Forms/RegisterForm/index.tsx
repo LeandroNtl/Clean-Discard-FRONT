@@ -19,7 +19,7 @@ const RegisterForm = (props: RegisterFormProps) => {
             <h2>Register</h2>
             {props.$children}
             <FormField>
-                <FormLabel htmlFor="name">Name</FormLabel>
+                <FormLabel htmlFor="name">Nome</FormLabel>
                 <FormInput type="text" id="name" name="name" placeholder="Digite seu nome" autoComplete="on" value={props.$fields?.name} onChange={props.$fields?.handleChange} required />
             </FormField>
             <FormField>
@@ -27,14 +27,15 @@ const RegisterForm = (props: RegisterFormProps) => {
                 <FormInput type="email" id="email" name="email" placeholder="Digite seu email" autoComplete="on" value={props.$fields?.email} onChange={props.$fields?.handleChange} required />
             </FormField>
             <FormField>
-                <FormLabel htmlFor="password">Password</FormLabel>
+                <FormLabel htmlFor="password">Senha</FormLabel>
+                <p style={{alignSelf: 'flex-start'}}><b style={{ color: 'red' }}>*</b>A senha deve conter no mínimo 8 caracteres</p>
                 <FormInput type="password" id="password" name="password" placeholder="Digite sua senha" autoComplete="on" value={props.$fields?.password} onChange={props.$fields?.handleChange} required/>
             </FormField>
             <FormField>
-                <FormLabel htmlFor="confirmPassword">Confirm Password</FormLabel>
+                <FormLabel htmlFor="confirmPassword">Repita sua Senha</FormLabel>
                 <FormInput type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirme sua senha" autoComplete="on" value={props.$fields?.confirmPassword} onChange={props.$fields?.handleChange} required/>
             </FormField>
-            <FormButton type="submit">Register</FormButton>
+            <FormButton type="submit">Cadastrar</FormButton>
         </Form>
     );
 

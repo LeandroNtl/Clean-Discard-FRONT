@@ -1,5 +1,5 @@
 import { MenuContainer, MenuLinks } from './styles';
-import { Home, Info, Phone, Map } from '@mui/icons-material';
+import { Home, Info, Map } from '@mui/icons-material';
 
 const HeaderMenu = () => {
 
@@ -15,12 +15,7 @@ const HeaderMenu = () => {
         {
             url: '/about',
             icon: <Info style={{ color: '#008000' }} />
-        },
-        {
-            url: '/contact',
-            icon: <Phone style={{ color: '#008000' }} />
         }
-        
     ];
 
     return (

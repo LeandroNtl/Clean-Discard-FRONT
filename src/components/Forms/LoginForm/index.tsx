@@ -21,7 +21,7 @@ const LoginForm = (props: LoginFormProps) => {
                 <FormInput type="email" id="email" name="email" placeholder="Digite seu email" autoComplete="on" value={props.$fields?.email} onChange={props.$fields?.handleChange} required />
             </FormField>
             <FormField>
-                <FormLabel htmlFor="password">Password</FormLabel>
+                <FormLabel htmlFor="password">Senha</FormLabel>
                 <FormInput type="password" id="password" name="password" placeholder="Digite sua senha" autoComplete="on" value={props.$fields?.password} onChange={props.$fields?.handleChange} required/>
             </FormField>
             <FormButton type="submit">Login</FormButton>

@@ -1,28 +1,23 @@
 import { MenuContainer, MenuLinks, MenuText } from './styles';
-import { Home, Info, Phone, Map } from '@mui/icons-material';
+import { Home, Info, Map } from '@mui/icons-material';
 
 const Menu = () => {
 
     const menuLinks = [
         {
-            name: 'Home',
+            name: 'Início',
             url: '/',
             icon: <Home />
         },
         {
-            name: 'Discard Points',
+            name: 'Pontos de Descarte',
             url: '/discard-points',
             icon: <Map />
         },
         {
-            name: 'About',
+            name: 'Sobre',
             url: '/about',
             icon: <Info />
-        },
-        {
-            name: 'Contact',
-            url: '/contact',
-            icon: <Phone />
         }
         
     ];

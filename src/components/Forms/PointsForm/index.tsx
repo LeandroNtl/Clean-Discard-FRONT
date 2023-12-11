@@ -35,14 +35,15 @@ const PointsForm = (props: PointsFormProps) => {
             <h2>Register Point</h2>
             {props.$children}
             <FormField>
-                <FormLabel htmlFor="name">Name</FormLabel>
+                <FormLabel htmlFor="name">Nome</FormLabel>
                 <FormInput type="text" id="name" name="name" placeholder="Digite o nome do ponto" autoComplete="on" value={props.$fields?.name} onChange={props.$fields?.handleChange} required />
             </FormField>
             <FormField>
-                <FormLabel htmlFor="description">Description</FormLabel>
+                <FormLabel htmlFor="description">Descrição</FormLabel>
                 <FormInput type="text" id="description" name="description" placeholder="Digite a descrição do ponto" autoComplete="on" value={props.$fields?.description} onChange={props.$fields?.handleChange} required />
             </FormField>
             <FormField>
+                <p><b style={{ color: 'red'}}>*</b>Clique no mapa para selecionar a localização do ponto de descarte automaticamente.</p>
                 <FormLabel htmlFor="latitude">Latitude</FormLabel>
                 <FormInput type="number" id="latitude" name="latitude" placeholder="Digite a latitude do ponto" autoComplete="on" value={props.$fields?.latitude} onChange={props.$fields?.handleChange} required />
             </FormField>
@@ -51,8 +52,9 @@ const PointsForm = (props: PointsFormProps) => {
                 <FormInput type="number" id="longitude" name="longitude" placeholder="Digite a longitude do ponto" autoComplete="on" value={props.$fields?.longitude} onChange={props.$fields?.handleChange} required />
             </FormField>
             <FormField>
-                <FormLabel htmlFor="wastes">Wastes</FormLabel>
+                <FormLabel htmlFor="wastes">Tipos de Resíduos Coletados</FormLabel>
                 <Container $align='flex-start' $justify='flex-start' $wrap='wrap' $gap='0.5rem' $width='100%' $height='100%' $padding='0.5rem' $border='1px solid #ccc' $radius='0.5rem'>
+                    <p><b style={{ color: 'red'}}>*</b>Selecione um ou mais tipos de resíduos coletados pelo ponto de descarte.</p>
                     {wastes.map(waste => (
                         <label key={waste.id}>
                             <input type="checkbox" name="waste_id" value={waste.id} onChange={props.$fields?.handleChange} />
@@ -62,7 +64,7 @@ const PointsForm = (props: PointsFormProps) => {
                 </Container>
             </FormField>
 
-            <FormButton type="submit">Register</FormButton>
+            <FormButton type="submit">Cadastrar</FormButton>
         </Form>
     );
 

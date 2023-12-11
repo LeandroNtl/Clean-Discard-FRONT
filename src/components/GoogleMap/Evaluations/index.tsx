@@ -90,7 +90,37 @@ const Evaluations = ({ discard_point_id }: any) => {
             discard_point_id: cookies.point
         }));
 
-    }, [cookies.token, cookies.point, user_id]);
+    }, [cookies.token, cookies.point, user_id, evaluations]);
+
+    const handleDelete = async (id: number) => {
+            
+        try {
+
+            const response = await api.delete(`/evaluations/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${cookies.token}`
+                }
+            });
+
+            toast.success(response.data.message);
+
+        } catch (error: any) {
+
+            toast.error(error.response.data.error);
+
+        }
+
+    }
+
+    evaluations.sort((a, b) => {
+        if (a.user_id === user_id) {
+            return -1;
+        }
+        if (b.user_id === user_id) {
+            return 1;
+        }
+        return 0;
+    });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
 
@@ -156,6 +186,9 @@ const Evaluations = ({ discard_point_id }: any) => {
                                     }
                                 })},</b> {evaluation.score} pontos</p>
                                 <p><b>Comentário:</b> {evaluation.comment}</p>
+                                {user_id === evaluation.user_id && (
+                                    <Button onClick={() => handleDelete(evaluation.id)}>Excluir</Button>
+                                )}
                             </Container>
                         )
                     }

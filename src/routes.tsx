@@ -13,6 +13,7 @@ import tokenValidator from './services/tokenValidator';
 // import Evaluations from './pages/Admin/Evaluations';
 import DiscardPointRegister from './pages/DiscardPointRegister';
 import Solicitations from './pages/Admin/Solicitations';
+import About from './pages/About';
 
 const cookies = new Cookies();
 
@@ -105,6 +106,10 @@ const BrowserRouter = createBrowserRouter([
                         <Solicitations />
                     </ProtectedRoute>
                 )
+            },
+            {
+                path: '/about',
+                element: <About />
             },
             {
                 path: '*',

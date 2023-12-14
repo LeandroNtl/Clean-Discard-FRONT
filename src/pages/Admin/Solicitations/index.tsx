@@ -50,7 +50,9 @@ const Solicitations = () => {
     }
 
     useEffect(() => {
+
         api.get('/discard-points').then(response => {
+            response.data = response.data.filter((discardPoint: DiscardPoint) => discardPoint.status !== 'ativo' && discardPoint.status !== 'rejeitado');
             setDiscardPoints(response.data);
         })
 

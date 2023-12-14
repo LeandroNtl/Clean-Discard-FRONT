@@ -48,7 +48,7 @@ const Auth = () => {
                     })}
                 </Container>
             </Container>
-            <Container $width="100%" $height="100%" $bg="#ffffff" $area="form" >
+            <Container $width="100%" $height="100%" $bg="#ffffff" $area="form" $padding="1rem">
                 <Container $width="60%" $radius="0.5rem" $shadow="0 0.5rem 1rem #008000" $padding="1rem" $resposive={{ $padding: '1rem', $margin: '1rem', $width: "80%", $shadow:"0 0.5rem 1rem #008000" }} >
                     <Outlet />
                 </Container>

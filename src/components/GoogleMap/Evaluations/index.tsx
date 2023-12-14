@@ -162,7 +162,7 @@ const Evaluations = ({ discard_point_id }: any) => {
     return (
         <Fragment>
             
-            <Container $width="100%" $direction="column" $justify="flex-start" $align="center" $gap="0.5rem" $padding="0.5rem" $overflowY="auto">
+            <Container $width="100%" $direction="column" $justify="flex-start" $align="flex-start" $gap="0.5rem" $padding="0.5rem" $overflowY="auto">
 
                 <Button onClick={() => setIsClicked(!isClicked)}>Avaliar</Button>
 
@@ -175,6 +175,10 @@ const Evaluations = ({ discard_point_id }: any) => {
                     )}
                 </Container>
                 }
+
+                {evaluations.length === 0 && (
+                    <p>Nenhuma avaliação</p>
+                )}
 
                 {evaluations.map(evaluation => {
                     if (evaluation.discard_point_id === discard_point_id) {

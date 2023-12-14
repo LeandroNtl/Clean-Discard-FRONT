@@ -18,7 +18,7 @@ const Chat = () => {
                 chatWindow: {
                     welcomeMessage: "Olá, sou a Clean, a assistente virtual da CleanDiscard. Como posso te ajudar?",
                     backgroundColor: "#ffffff",
-                    height: 700,
+                    height: 600,
                     width: 400,
                     fontSize: 16,
                     poweredByTextColor: "#303235",

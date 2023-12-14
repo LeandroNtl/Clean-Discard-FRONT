@@ -48,7 +48,6 @@ const Register = () => {
     useEffect(() => {
 
         if (isRegistered) {
-            toast.success('Cadastro realizado com sucesso!');
             setIsRegistered(false);
             setTimeout(() => {
                 navigate("/auth/login");

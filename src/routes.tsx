@@ -10,7 +10,6 @@ import Register from './pages/Auth/Register';
 import { Wastes, Admin } from './pages/Admin';
 import Cookies from 'universal-cookie';
 import tokenValidator from './services/tokenValidator';
-// import Evaluations from './pages/Admin/Evaluations';
 import DiscardPointRegister from './pages/DiscardPointRegister';
 import Solicitations from './pages/Admin/Solicitations';
 import About from './pages/About';

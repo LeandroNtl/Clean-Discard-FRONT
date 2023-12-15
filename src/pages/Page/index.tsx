@@ -10,7 +10,6 @@ import Profile from '../../components/Profile';
 import PageTitle from '../../components/PageTitle';
 import HeaderMenu from '../../components/HeaderMenu';
 
-
 const Page = () => {
 
     return (
